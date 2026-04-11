@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.SafKaro.Display" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="android:textColor">@color/color_text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.SafKaro.Headline" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textColor">@color/color_text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.SafKaro.Title" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">@color/color_text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.SafKaro.Card.Surface" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/color_surface</item>
+        <item name="cardCornerRadius">@dimen/radius_24</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/color_border</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="Widget.SafKaro.Card.Info" parent="Widget.SafKaro.Card.Surface">
+        <item name="cardBackgroundColor">@color/color_surface_alt</item>
+    </style>
+
+    <style name="Widget.SafKaro.Card.Warning" parent="Widget.SafKaro.Card.Surface">
+        <item name="cardBackgroundColor">@color/color_warning_light</item>
+        <item name="strokeColor">#F2E1BA</item>
+    </style>
+
+    <style name="Widget.SafKaro.Button.Primary" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="cornerRadius">@dimen/radius_pill</item>
+        <item name="backgroundTint">@color/color_primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.SafKaro.Button.Destructive" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="cornerRadius">@dimen/radius_pill</item>
+        <item name="backgroundTint">@color/color_error</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.SafKaro.Button.Outline" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="cornerRadius">@dimen/radius_pill</item>
+        <item name="strokeColor">@color/color_border_strong</item>
+        <item name="android:textColor">@color/color_text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.SafKaro.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="thumbTint">@color/white</item>
+        <item name="trackTint">@color/color_primary</item>
+    </style>
+</resources>

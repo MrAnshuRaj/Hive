@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">#0B78C8</color>
+    <color name="color_primary_dark">#085E9C</color>
+    <color name="color_primary_light">#EAF5FF</color>
+    <color name="color_primary_soft">#D8ECFF</color>
+    <color name="color_teal">#18C8A5</color>
+    <color name="color_teal_light">#DFF9F3</color>
+    <color name="color_success">#1DBF8C</color>
+    <color name="color_success_light">#DDF8EF</color>
+    <color name="color_warning">#F0B342</color>
+    <color name="color_warning_light">#FFF6E7</color>
+    <color name="color_error">#C91D1D</color>
+    <color name="color_error_light">#FCE9EA</color>
+    <color name="color_background">#F5F7FB</color>
+    <color name="color_surface">#FFFFFFFF</color>
+    <color name="color_surface_alt">#F9FBFF</color>
+    <color name="color_border">#DFE5EE</color>
+    <color name="color_border_strong">#C8D8EA</color>
+    <color name="color_text_primary">#1B1E28</color>
+    <color name="color_text_secondary">#6F7583</color>
+    <color name="color_text_hint">#94A0AF</color>
+    <color name="color_mint_banner">#DFF7F3</color>
+    <color name="color_tab_unselected_bg">#F1F4F8</color>
+    <color name="color_tab_selected_text">#FFFFFF</color>
+    <color name="color_tab_unselected_text">#3B4453</color>
+    <color name="color_progress_track">#E8ECF3</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

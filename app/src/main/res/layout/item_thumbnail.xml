@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/thumbnail_size"
+    android:layout_height="@dimen/thumbnail_size"
+    android:layout_marginEnd="@dimen/space_12">
+
+    <ImageView
+        android:id="@+id/imageThumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_thumbnail_placeholder"
+        android:clipToOutline="true"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/textBestBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_8"
+        android:layout_marginTop="@dimen/space_8"
+        android:background="@drawable/bg_chip_best"
+        android:paddingStart="@dimen/space_8"
+        android:paddingTop="@dimen/space_4"
+        android:paddingEnd="@dimen/space_8"
+        android:paddingBottom="@dimen/space_4"
+        android:text="@string/best"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/imageSelection"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_check_filled" />
+
+    <TextView
+        android:id="@+id/textSizeBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="@dimen/space_8"
+        android:background="@drawable/bg_size_badge"
+        android:paddingStart="@dimen/space_8"
+        android:paddingTop="@dimen/space_4"
+        android:paddingEnd="@dimen/space_8"
+        android:paddingBottom="@dimen/space_4"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+</FrameLayout>
