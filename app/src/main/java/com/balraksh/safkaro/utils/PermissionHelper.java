@@ -36,6 +36,27 @@ public final class PermissionHelper {
         return true;
     }
 
+    public static boolean requiresLegacyWritePermission() {
+        return Build.VERSION.SDK_INT <= Build.VERSION_CODES.P;
+    }
+
+    public static boolean hasVideoCompressionWritePermission(Context context) {
+        return !requiresLegacyWritePermission() || ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public static String[] getVideoCompressionPermissions() {
+        if (requiresLegacyWritePermission()) {
+            return new String[]{
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            };
+        }
+        return getRequiredPermissions();
+    }
+
     public static boolean shouldShowRationale(Activity activity) {
         for (String permission : getRequiredPermissions()) {
             if (activity.shouldShowRequestPermissionRationale(permission)) {

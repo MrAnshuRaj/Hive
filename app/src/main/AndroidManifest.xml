@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
 
@@ -17,7 +18,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SafKaro">
         <activity
-            android:name=".ui.video.VideoCompressionActivity"
+            android:name=".ui.video.VideoResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.video.VideoCompressingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.video.VideoSetupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.video.VideoSelectActivity"
             android:exported="false" />
         <activity
             android:name=".ui.cleanup.CleanupSuccessActivity"

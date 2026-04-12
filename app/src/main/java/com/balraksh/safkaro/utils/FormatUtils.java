@@ -25,4 +25,20 @@ public final class FormatUtils {
         }
         return bytes + " B";
     }
+
+    public static String formatDuration(long durationMs) {
+        long totalSeconds = Math.max(0L, durationMs / 1000L);
+        long minutes = totalSeconds / 60L;
+        long seconds = totalSeconds % 60L;
+        if (minutes >= 60L) {
+            long hours = minutes / 60L;
+            long remainingMinutes = minutes % 60L;
+            return hours + ":" + String.format("%02d:%02d", remainingMinutes, seconds);
+        }
+        return minutes + ":" + String.format("%02d", seconds);
+    }
+
+    public static String formatPercentage(float fraction) {
+        return new DecimalFormat("0").format(fraction * 100f) + "%";
+    }
 }

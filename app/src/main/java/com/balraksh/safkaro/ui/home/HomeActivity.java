@@ -16,7 +16,7 @@ import com.balraksh.safkaro.ui.BaseEdgeToEdgeActivity;
 import com.balraksh.safkaro.ui.permission.PermissionActivity;
 import com.balraksh.safkaro.ui.results.ScanResultsActivity;
 import com.balraksh.safkaro.ui.setup.ScanSetupActivity;
-import com.balraksh.safkaro.ui.video.VideoCompressionActivity;
+import com.balraksh.safkaro.ui.video.VideoSelectActivity;
 import com.balraksh.safkaro.utils.FormatUtils;
 import com.balraksh.safkaro.utils.PermissionHelper;
 
@@ -38,8 +38,7 @@ public class HomeActivity extends BaseEdgeToEdgeActivity {
         quickCleanText = findViewById(R.id.textQuickClean);
 
         findViewById(R.id.cardCleanPhotos).setOnClickListener(v -> openCleanPhotos());
-        findViewById(R.id.cardCompressVideos).setOnClickListener(v ->
-                startActivity(new Intent(this, VideoCompressionActivity.class)));
+        findViewById(R.id.cardCompressVideos).setOnClickListener(v -> openCompressVideos());
         quickCleanCard.setOnClickListener(v -> openQuickClean());
     }
 
@@ -78,5 +77,13 @@ public class HomeActivity extends BaseEdgeToEdgeActivity {
         } else {
             openCleanPhotos();
         }
+    }
+
+    private void openCompressVideos() {
+        if (!PermissionHelper.hasRequiredPermissions(this)) {
+            startActivity(new Intent(this, PermissionActivity.class));
+            return;
+        }
+        startActivity(new Intent(this, VideoSelectActivity.class));
     }
 }

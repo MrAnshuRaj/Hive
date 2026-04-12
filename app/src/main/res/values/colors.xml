@@ -25,6 +25,8 @@
     <color name="color_tab_selected_text">#FFFFFF</color>
     <color name="color_tab_unselected_text">#3B4453</color>
     <color name="color_progress_track">#E8ECF3</color>
+    <color name="color_video_preview_start">#DDF5F5</color>
+    <color name="color_video_preview_end">#C9EFF0</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

@@ -17,6 +17,7 @@
     <dimen name="space_48">48dp</dimen>
     <dimen name="space_56">56dp</dimen>
     <dimen name="space_64">64dp</dimen>
+    <dimen name="space_72">72dp</dimen>
     <dimen name="radius_12">12dp</dimen>
     <dimen name="radius_16">16dp</dimen>
     <dimen name="radius_20">20dp</dimen>
@@ -27,4 +28,8 @@
     <dimen name="feature_icon_size">52dp</dimen>
     <dimen name="thumbnail_size">104dp</dimen>
     <dimen name="summary_card_height">120dp</dimen>
+    <dimen name="video_thumb_width">92dp</dimen>
+    <dimen name="video_thumb_height">72dp</dimen>
+    <dimen name="video_action_size">68dp</dimen>
+    <dimen name="video_preview_height">188dp</dimen>
 </resources>
