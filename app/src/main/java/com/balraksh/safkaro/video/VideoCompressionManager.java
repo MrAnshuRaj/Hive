@@ -8,9 +8,11 @@ import android.os.SystemClock;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.annotation.OptIn;
 import androidx.media3.common.Effect;
 import androidx.media3.common.MediaItem;
 import androidx.media3.common.MimeTypes;
+import androidx.media3.common.util.UnstableApi;
 import androidx.media3.effect.Presentation;
 import androidx.media3.transformer.Composition;
 import androidx.media3.transformer.DefaultEncoderFactory;
@@ -37,6 +39,7 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@UnstableApi
 public class VideoCompressionManager {
 
     public interface Callback {
@@ -100,6 +103,7 @@ public class VideoCompressionManager {
         cancelInternal(true);
     }
 
+    @OptIn(markerClass = UnstableApi.class)
     @MainThread
     private void cancelInternal(boolean userInitiated) {
         cancelled = userInitiated;
@@ -138,6 +142,7 @@ public class VideoCompressionManager {
         });
     }
 
+    @OptIn(markerClass = UnstableApi.class)
     @MainThread
     private void exportItem(
             @NonNull VideoItem item,
@@ -290,6 +295,7 @@ public class VideoCompressionManager {
     private void startProgressPolling(@NonNull VideoItem item) {
         stopProgressPolling();
         progressRunnable = new Runnable() {
+            @OptIn(markerClass = UnstableApi.class)
             @Override
             public void run() {
                 if (currentTransformer == null || cancelled || !running) {
