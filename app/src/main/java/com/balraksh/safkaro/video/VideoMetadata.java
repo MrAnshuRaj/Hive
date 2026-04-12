@@ -15,6 +15,8 @@ public class VideoMetadata {
     private final int rotationDegrees;
     private final int bitrate;
     private final float frameRate;
+    private final boolean hasAudioTrack;
+    private final int audioBitrate;
 
     public VideoMetadata(
             @NonNull Uri sourceUri,
@@ -25,7 +27,9 @@ public class VideoMetadata {
             int height,
             int rotationDegrees,
             int bitrate,
-            float frameRate
+            float frameRate,
+            boolean hasAudioTrack,
+            int audioBitrate
     ) {
         this.sourceUri = sourceUri;
         this.displayName = displayName;
@@ -36,6 +40,8 @@ public class VideoMetadata {
         this.rotationDegrees = rotationDegrees;
         this.bitrate = bitrate;
         this.frameRate = frameRate;
+        this.hasAudioTrack = hasAudioTrack;
+        this.audioBitrate = audioBitrate;
     }
 
     @NonNull
@@ -74,6 +80,14 @@ public class VideoMetadata {
 
     public float getFrameRate() {
         return frameRate;
+    }
+
+    public boolean hasAudioTrack() {
+        return hasAudioTrack;
+    }
+
+    public int getAudioBitrate() {
+        return audioBitrate;
     }
 
     public int getDisplayWidth() {

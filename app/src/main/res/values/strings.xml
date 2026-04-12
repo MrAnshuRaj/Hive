@@ -98,6 +98,8 @@
     <string name="resolution">Resolution</string>
     <string name="fps">FPS</string>
     <string name="compression_strength">Compression Strength</string>
+    <string name="audio_quality">Audio Quality</string>
+    <string name="codec">Codec</string>
     <string name="compression_strength_low">Low</string>
     <string name="compression_strength_medium">Medium</string>
     <string name="compression_strength_high">High</string>

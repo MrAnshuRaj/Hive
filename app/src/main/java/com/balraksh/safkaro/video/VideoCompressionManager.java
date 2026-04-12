@@ -9,11 +9,13 @@ import android.os.SystemClock;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.OptIn;
+import androidx.annotation.Nullable;
 import androidx.media3.common.Effect;
 import androidx.media3.common.MediaItem;
 import androidx.media3.common.MimeTypes;
 import androidx.media3.common.util.UnstableApi;
 import androidx.media3.effect.Presentation;
+import androidx.media3.transformer.AudioEncoderSettings;
 import androidx.media3.transformer.Composition;
 import androidx.media3.transformer.DefaultEncoderFactory;
 import androidx.media3.transformer.EditedMediaItem;
@@ -41,6 +43,8 @@ import java.util.concurrent.Executors;
 
 @UnstableApi
 public class VideoCompressionManager {
+
+    private static final float I_FRAME_INTERVAL_SECONDS = 2f;
 
     public interface Callback {
         void onProgress(@NonNull VideoCompressionProgress progress);
@@ -158,6 +162,23 @@ public class VideoCompressionManager {
                 appContext.getCacheDir(),
                 buildOutputName(metadata.getDisplayName()).replace(".mp4", "_working.mp4")
         );
+        exportItemWithCodec(item, metadata, settings, tempOutput, settings.getTargetVideoMimeType());
+    }
+
+    @OptIn(markerClass = UnstableApi.class)
+    @MainThread
+    private void exportItemWithCodec(
+            @NonNull VideoItem item,
+            @NonNull VideoMetadata metadata,
+            @NonNull ResolvedVideoCompressionSettings settings,
+            @NonNull File tempOutput,
+            @NonNull String videoMimeType
+    ) {
+        if (cancelled) {
+            finishBatch(true);
+            return;
+        }
+
         if (tempOutput.exists()) {
             //noinspection ResultOfMethodCallIgnored
             tempOutput.delete();
@@ -183,14 +204,24 @@ public class VideoCompressionManager {
 
         VideoEncoderSettings videoEncoderSettings = new VideoEncoderSettings.Builder()
                 .setBitrate(settings.getTargetBitrate())
+                .setiFrameIntervalSeconds(I_FRAME_INTERVAL_SECONDS)
                 .build();
+
+        DefaultEncoderFactory.Builder encoderFactoryBuilder = new DefaultEncoderFactory.Builder(appContext)
+                .setEnableFallback(true)
+                .setRequestedVideoEncoderSettings(videoEncoderSettings);
+        if (settings.hasAudioTrack() && settings.getTargetAudioBitrate() > 0) {
+            encoderFactoryBuilder.setRequestedAudioEncoderSettings(
+                    new AudioEncoderSettings.Builder()
+                            .setBitrate(settings.getTargetAudioBitrate())
+                            .build()
+            );
+        }
 
         currentTransformer = new Transformer.Builder(appContext)
                 .setAudioMimeType(MimeTypes.AUDIO_AAC)
-                .setVideoMimeType(MimeTypes.VIDEO_H264)
-                .setEncoderFactory(new DefaultEncoderFactory.Builder(appContext)
-                        .setRequestedVideoEncoderSettings(videoEncoderSettings)
-                        .build())
+                .setVideoMimeType(videoMimeType)
+                .setEncoderFactory(encoderFactoryBuilder.build())
                 .addListener(new Transformer.Listener() {
                     @Override
                     public void onCompleted(Composition ignored, ExportResult exportResult) {
@@ -211,6 +242,10 @@ public class VideoCompressionManager {
                             finishBatch(true);
                             return;
                         }
+                        if (shouldRetryWithSafeCodec(videoMimeType)) {
+                            exportItemWithCodec(item, metadata, settings, tempOutput, CodecSupportUtils.MIME_AVC);
+                            return;
+                        }
                         handleItemFailure(item, exportException);
                     }
                 })
@@ -218,6 +253,12 @@ public class VideoCompressionManager {
 
         startProgressPolling(item);
         currentTransformer.start(composition, tempOutput.getAbsolutePath());
+    }
+
+    private boolean shouldRetryWithSafeCodec(@Nullable String videoMimeType) {
+        return videoMimeType != null
+                && !CodecSupportUtils.MIME_AVC.equals(videoMimeType)
+                && CodecSupportUtils.isCodecUsable(CodecSupportUtils.MIME_AVC);
     }
 
     private void handleItemSuccess(

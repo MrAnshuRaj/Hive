@@ -111,6 +111,8 @@ public class VideoMediaRepository {
             int bitrate = parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE), 0);
 
             float frameRate = 0f;
+            boolean hasAudioTrack = false;
+            int audioBitrate = 0;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 frameRate = parseFloat(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_CAPTURE_FRAMERATE), 0f);
             }
@@ -128,7 +130,11 @@ public class VideoMediaRepository {
                         if (frameRate <= 0f && format.containsKey(MediaFormat.KEY_FRAME_RATE)) {
                             frameRate = format.getInteger(MediaFormat.KEY_FRAME_RATE);
                         }
-                        break;
+                    } else if (mimeType != null && mimeType.startsWith("audio/")) {
+                        hasAudioTrack = true;
+                        if (format.containsKey(MediaFormat.KEY_BIT_RATE)) {
+                            audioBitrate = format.getInteger(MediaFormat.KEY_BIT_RATE);
+                        }
                     }
                 }
             } finally {
@@ -144,7 +150,9 @@ public class VideoMediaRepository {
                     height,
                     rotation,
                     bitrate,
-                    frameRate
+                    frameRate,
+                    hasAudioTrack,
+                    audioBitrate
             );
         } finally {
             retriever.release();

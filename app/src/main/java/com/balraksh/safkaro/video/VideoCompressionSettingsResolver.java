@@ -43,12 +43,27 @@ public final class VideoCompressionSettingsResolver {
         targetBitrate = Math.max(floor, targetBitrate);
         targetBitrate = Math.min(targetBitrate, Math.max(96_000, (int) (sourceBitrate * 0.95f)));
 
+        String targetVideoMimeType = CodecSupportUtils.isCodecUsable(request.getSelectedCodecMimeType())
+                ? request.getSelectedCodecMimeType()
+                : CodecSupportUtils.MIME_AVC;
+
+        int targetAudioBitrate = 0;
+        if (metadata.hasAudioTrack()) {
+            targetAudioBitrate = request.getAudioBitrate();
+            if (metadata.getAudioBitrate() > 0) {
+                targetAudioBitrate = Math.min(metadata.getAudioBitrate(), targetAudioBitrate);
+            }
+        }
+
         return new ResolvedVideoCompressionSettings(
                 outputWidth,
                 outputHeight,
                 Math.max(96_000, targetBitrate),
                 targetFps,
-                targetShortSide
+                targetShortSide,
+                targetVideoMimeType,
+                targetAudioBitrate,
+                metadata.hasAudioTrack()
         );
     }
 
