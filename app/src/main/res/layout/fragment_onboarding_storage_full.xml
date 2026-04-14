@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/space_24"
+    android:paddingTop="@dimen/space_8"
+    android:paddingEnd="@dimen/space_24"
+    android:paddingBottom="@dimen/onboarding_page_bottom_padding">
+
+    <View
+        android:id="@+id/viewStorageGlow"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:alpha="0.56"
+        android:background="@drawable/bg_onboarding_glow_red"
+        app:layout_constraintBottom_toBottomOf="@id/cardStorageContainer"
+        app:layout_constraintEnd_toEndOf="@id/cardStorageContainer"
+        app:layout_constraintStart_toStartOf="@id/cardStorageContainer"
+        app:layout_constraintTop_toTopOf="@id/cardStorageContainer" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardStorageContainer"
+        style="@style/Widget.SafKaro.Card.OnboardingGlass"
+        android:layout_width="310dp"
+        android:layout_height="194dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toTopOf="@id/textStorageHeadline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/space_24">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="iPhone Storage"
+                    android:textColor="@color/color_onboarding_text_primary"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageStorageAlert"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_warning" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="@dimen/space_24"
+                android:background="#251F1A">
+
+                <LinearLayout
+                    android:id="@+id/viewStorageFill"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        android:background="#3577EF" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="#10C45C" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="68"
+                        android:background="#FF4859" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:background="#FF7E86" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_22"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Used: 128 GB"
+                    android:textColor="@color/color_onboarding_text_secondary"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textStorageStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/onboarding_storage_status"
+                    android:textColor="#F24446"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/textStorageHeadline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="@string/onboarding_storage_title"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.SafKaro.OnboardingTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardStorageContainer" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_16"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/space_12"
+        android:text="@string/onboarding_storage_subtitle"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.SafKaro.OnboardingSubtitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textStorageHeadline" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

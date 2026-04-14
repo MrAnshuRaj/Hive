@@ -68,4 +68,33 @@
         <item name="thumbTint">@color/white</item>
         <item name="trackTint">@color/color_primary</item>
     </style>
+
+    <style name="TextAppearance.SafKaro.OnboardingTitle" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textColor">@color/color_onboarding_text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="TextAppearance.SafKaro.OnboardingSubtitle" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/color_onboarding_text_secondary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="Widget.SafKaro.Card.OnboardingGlass" parent="Widget.SafKaro.Card.Surface">
+        <item name="cardBackgroundColor">@color/color_onboarding_glass</item>
+        <item name="strokeColor">@color/color_onboarding_glass_strong</item>
+        <item name="cardCornerRadius">@dimen/radius_28</item>
+    </style>
+
+    <style name="Widget.SafKaro.Card.OnboardingPremium" parent="Widget.SafKaro.Card.Surface">
+        <item name="cardBackgroundColor">@color/color_onboarding_glass</item>
+        <item name="strokeColor">@color/color_onboarding_glass_strong</item>
+        <item name="cardCornerRadius">@dimen/radius_24</item>
+    </style>
+
+    <style name="Widget.SafKaro.Button.OnboardingPrimary" parent="Widget.SafKaro.Button.Primary">
+        <item name="backgroundTint">@color/color_onboarding_orange</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/space_24"
+    android:paddingTop="@dimen/space_8"
+    android:paddingEnd="@dimen/space_24"
+    android:paddingBottom="@dimen/onboarding_page_bottom_padding">
+
+    <View
+        android:id="@+id/viewSwipeGlow"
+        android:layout_width="@dimen/onboarding_glow_size"
+        android:layout_height="@dimen/onboarding_glow_size"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="124dp"
+        android:alpha="0.46"
+        android:background="@drawable/bg_onboarding_glow_orange" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="320dp"
+            android:layout_height="362dp">
+
+            <View
+                android:id="@+id/cardSwipeBack"
+                android:layout_width="252dp"
+                android:layout_height="318dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_swipe_empty_card"
+                android:translationX="-18dp"
+                android:translationY="18dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardSwipeFront"
+                style="@style/Widget.SafKaro.Card.OnboardingGlass"
+                android:layout_width="252dp"
+                android:layout_height="318dp"
+                android:layout_gravity="center"
+                app:cardUseCompatPadding="true">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/onboarding_swipe_photo" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_onboarding_photo_scrim" />
+
+                    <FrameLayout
+                        android:id="@+id/cardSwipeDelete"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="start|center_vertical"
+                        android:layout_marginStart="@dimen/space_18"
+                        android:background="@drawable/bg_icon_circle_error"
+                        android:alpha="0.2">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_delete" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/cardSwipeKeep"
+                        android:layout_width="86dp"
+                        android:layout_height="86dp"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="@dimen/space_18"
+                        android:background="@drawable/bg_icon_circle_success"
+                        android:alpha="0.2">
+
+                        <ImageView
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_heart_outline" />
+                    </FrameLayout>
+                </FrameLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_18"
+            android:gravity="center"
+            android:text="@string/onboarding_swipe_title"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.SafKaro.OnboardingTitle" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_14"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/space_12"
+            android:text="@string/onboarding_swipe_subtitle"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.SafKaro.OnboardingSubtitle" />
+    </LinearLayout>
+
+</FrameLayout>

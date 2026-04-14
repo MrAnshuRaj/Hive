@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/onboardingRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_onboarding_screen"
+    android:padding="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutOnboardingPanel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_onboarding_panel"
+        android:clipToOutline="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/viewGlobalGlowTop"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:alpha="0.18"
+            android:background="@drawable/bg_onboarding_glow_gold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewGlobalGlowCenter"
+            android:layout_width="340dp"
+            android:layout_height="340dp"
+            android:alpha="0.28"
+            android:background="@drawable/bg_onboarding_glow_orange"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageOnboardingPattern"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0.2"
+            android:contentDescription="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_onboarding_pattern"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/layoutOnboardingHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/space_24"
+            android:paddingTop="@dimen/space_16"
+            android:paddingEnd="@dimen/space_24"
+            android:paddingBottom="@dimen/space_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.balraksh.safkaro.ui.onboarding.OnboardingSegmentedProgressView
+                android:id="@+id/viewOnboardingProgress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textOnboardingSkip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_16"
+                android:paddingHorizontal="@dimen/space_8"
+                android:paddingVertical="@dimen/space_8"
+                android:text="@string/onboarding_skip"
+                android:textAllCaps="true"
+                android:textColor="@color/color_onboarding_text_secondary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerOnboarding"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutOnboardingHeader" />
+
+        <LinearLayout
+            android:id="@+id/layoutOnboardingBottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/space_24"
+            android:paddingEnd="@dimen/space_24"
+            android:paddingBottom="@dimen/space_22"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/textOnboardingLegal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_12"
+                android:gravity="center"
+                android:text="@string/onboarding_legal_text"
+                android:textColor="@color/color_onboarding_text_secondary"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:layout_marginTop="0dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonOnboardingCta"
+                    style="@style/Widget.SafKaro.Button.OnboardingPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="6dp"
+                    android:text="@string/onboarding_cta_continue" />
+
+                <View
+                    android:id="@+id/viewOnboardingCtaShine"
+                    android:layout_width="84dp"
+                    android:layout_height="66dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/bg_onboarding_cta_shine"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,6 +27,21 @@
     <color name="color_progress_track">#E8ECF3</color>
     <color name="color_video_preview_start">#DDF5F5</color>
     <color name="color_video_preview_end">#C9EFF0</color>
+    <color name="color_onboarding_bg">#120E0A</color>
+    <color name="color_onboarding_bg_outer">#1A140C</color>
+    <color name="color_onboarding_surface">#181310</color>
+    <color name="color_onboarding_glass">#2C211A</color>
+    <color name="color_onboarding_glass_strong">#433425</color>
+    <color name="color_onboarding_red">#FF4A52</color>
+    <color name="color_onboarding_orange">#FFA40C</color>
+    <color name="color_onboarding_blue">#4B80FF</color>
+    <color name="color_onboarding_emerald">#FFB52E</color>
+    <color name="color_onboarding_violet">#E65B65</color>
+    <color name="color_onboarding_gold">#FFB117</color>
+    <color name="color_onboarding_text_primary">#F3EEE8</color>
+    <color name="color_onboarding_text_secondary">#9C938A</color>
+    <color name="color_onboarding_progress_fill">#FFA40C</color>
+    <color name="color_onboarding_progress_track">#3D4A4038</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

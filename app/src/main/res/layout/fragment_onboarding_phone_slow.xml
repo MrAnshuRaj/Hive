@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/space_24"
+    android:paddingTop="@dimen/space_8"
+    android:paddingEnd="@dimen/space_24"
+    android:paddingBottom="@dimen/onboarding_page_bottom_padding">
+
+    <View
+        android:id="@+id/viewLagGlow"
+        android:layout_width="@dimen/onboarding_glow_size"
+        android:layout_height="@dimen/onboarding_glow_size"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="124dp"
+        android:alpha="0.48"
+        android:background="@drawable/bg_onboarding_glow_orange" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.SafKaro.Card.OnboardingGlass"
+            android:layout_width="match_parent"
+            android:layout_height="316dp"
+            android:layout_marginHorizontal="@dimen/space_8"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/space_24">
+
+                <FrameLayout
+                    android:layout_width="132dp"
+                    android:layout_height="132dp"
+                    android:layout_marginTop="@dimen/space_10">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_onboarding_ring" />
+
+                    <ImageView
+                        android:id="@+id/imageLagRing"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_lag_progress_arc" />
+
+                </FrameLayout>
+
+                <View
+                    android:id="@+id/viewLagBarOne"
+                    android:layout_width="172dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="@dimen/space_28"
+                    android:alpha="0.7"
+                    android:background="@drawable/bg_onboarding_soft_chip" />
+
+                <View
+                    android:id="@+id/viewLagBarTwo"
+                    android:layout_width="200dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="@dimen/space_12"
+                    android:alpha="0.68"
+                    android:background="@drawable/bg_onboarding_soft_chip" />
+
+                <View
+                    android:id="@+id/viewLagBarThree"
+                    android:layout_width="160dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="@dimen/space_12"
+                    android:alpha="0.66"
+                    android:background="@drawable/bg_onboarding_soft_chip" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:gravity="center"
+            android:text="@string/onboarding_phone_title"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.SafKaro.OnboardingTitle" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_14"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/space_12"
+            android:text="@string/onboarding_phone_subtitle"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.SafKaro.OnboardingSubtitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12"
+            android:text="@string/onboarding_phone_status"
+            android:textColor="@color/color_onboarding_text_secondary"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/space_24"
+    android:paddingTop="@dimen/space_8"
+    android:paddingEnd="@dimen/space_24"
+    android:paddingBottom="@dimen/onboarding_page_bottom_padding">
+
+    <View
+        android:id="@+id/viewVideoGlow"
+        android:layout_width="@dimen/onboarding_glow_size"
+        android:layout_height="@dimen/onboarding_glow_size"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="124dp"
+        android:alpha="0.5"
+        android:background="@drawable/bg_onboarding_glow_orange" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.SafKaro.Card.OnboardingGlass"
+            android:layout_width="match_parent"
+            android:layout_height="363dp"
+            android:layout_marginHorizontal="@dimen/space_8"
+            app:cardUseCompatPadding="true">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/onboarding_video_photo" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_onboarding_photo_scrim" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top|center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_20">
+
+                    <ImageView
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="@dimen/space_24"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_video" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="68dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardVideoSizeChip"
+                            style="@style/Widget.SafKaro.Card.OnboardingPremium"
+                            android:layout_width="198dp"
+                            android:layout_height="132dp"
+                            app:cardUseCompatPadding="true">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/space_18">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="30 SEC 4K VIDEO"
+                                    android:textColor="#D6CDC3"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textVideoSizeHighlight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/space_10"
+                                    android:text="@string/onboarding_large_videos_size"
+                                    android:textColor="#FF636A"
+                                    android:textSize="28sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <FrameLayout
+                            android:layout_width="262dp"
+                            android:layout_height="6dp"
+                            android:layout_marginTop="@dimen/space_14"
+                            android:background="#52FFFFFF">
+
+                            <View
+                                android:id="@+id/viewVideoProgressFill"
+                                android:layout_width="176dp"
+                                android:layout_height="match_parent"
+                                android:background="#FFFFFFFF" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_24"
+            android:gravity="center"
+            android:text="@string/onboarding_large_videos_title"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.SafKaro.OnboardingTitle" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_14"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/space_16"
+            android:text="@string/onboarding_large_videos_subtitle"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.SafKaro.OnboardingSubtitle" />
+    </LinearLayout>
+
+</FrameLayout>

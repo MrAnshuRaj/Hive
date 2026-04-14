@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/space_24"
+    android:paddingTop="@dimen/space_8"
+    android:paddingEnd="@dimen/space_24"
+    android:paddingBottom="@dimen/onboarding_page_bottom_padding">
+
+    <View
+        android:id="@+id/viewCompressionGlow"
+        android:layout_width="@dimen/onboarding_glow_size"
+        android:layout_height="@dimen/onboarding_glow_size"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="122dp"
+        android:alpha="0.5"
+        android:background="@drawable/bg_onboarding_glow_gold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.SafKaro.Card.OnboardingGlass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/space_8"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_20">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="116dp"
+                    app:cardCornerRadius="@dimen/radius_20"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#3F3A35"
+                    app:strokeWidth="1dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@null"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/onboarding_compression_beach" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_onboarding_photo_scrim" />
+
+                        <View
+                            android:layout_width="188dp"
+                            android:layout_height="2dp"
+                            android:layout_gravity="bottom|start"
+                            android:layout_marginStart="26dp"
+                            android:layout_marginBottom="26dp"
+                            android:background="#CCFFFFFF"
+                            android:rotation="-12" />
+
+                        <ImageView
+                            android:layout_width="58dp"
+                            android:layout_height="58dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_play_filled" />
+                    </FrameLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_18"
+                    android:gravity="center"
+                    android:text="Beach_Trip.mp4"
+                    android:textColor="@color/color_onboarding_text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_6"
+                    android:gravity="center"
+                    android:text="4K - 02:15"
+                    android:textColor="@color/color_onboarding_text_secondary"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="@dimen/space_24"
+                    android:background="@drawable/bg_compression_progress_track">
+
+                    <View
+                        android:id="@+id/viewCompressionFill"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_onboarding_progress_fill" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_20"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textCompressionOldSize"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/onboarding_compression_from"
+                        android:textColor="#E66063"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/imageCompressionArrow"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_download" />
+
+                    <TextView
+                        android:id="@+id/textCompressionNewSize"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="@string/onboarding_compression_to"
+                        android:textColor="#2DA46F"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_24"
+            android:gravity="center"
+            android:text="@string/onboarding_compression_title"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.SafKaro.OnboardingTitle" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_14"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/space_10"
+            android:text="@string/onboarding_compression_subtitle"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.SafKaro.OnboardingSubtitle" />
+    </LinearLayout>
+
+</FrameLayout>

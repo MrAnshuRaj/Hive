@@ -10,10 +10,12 @@
     <dimen name="space_16">16dp</dimen>
     <dimen name="space_18">18dp</dimen>
     <dimen name="space_20">20dp</dimen>
+    <dimen name="space_22">22dp</dimen>
     <dimen name="space_24">24dp</dimen>
     <dimen name="space_28">28dp</dimen>
     <dimen name="space_32">32dp</dimen>
     <dimen name="space_40">40dp</dimen>
+    <dimen name="space_44">44dp</dimen>
     <dimen name="space_48">48dp</dimen>
     <dimen name="space_56">56dp</dimen>
     <dimen name="space_64">64dp</dimen>
@@ -32,4 +34,11 @@
     <dimen name="video_thumb_height">72dp</dimen>
     <dimen name="video_action_size">68dp</dimen>
     <dimen name="video_preview_height">188dp</dimen>
+    <dimen name="onboarding_progress_height">6dp</dimen>
+    <dimen name="onboarding_header_padding_top">12dp</dimen>
+    <dimen name="onboarding_bottom_bar_height">164dp</dimen>
+    <dimen name="onboarding_page_bottom_padding">132dp</dimen>
+    <dimen name="onboarding_illustration_height">340dp</dimen>
+    <dimen name="onboarding_glow_size">220dp</dimen>
+    <dimen name="onboarding_paywall_badge_height">38dp</dimen>
 </resources>
