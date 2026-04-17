@@ -29,6 +29,8 @@
     <dimen name="button_height">56dp</dimen>
     <dimen name="feature_icon_size">52dp</dimen>
     <dimen name="thumbnail_size">104dp</dimen>
+    <dimen name="result_thumbnail_width">178dp</dimen>
+    <dimen name="result_thumbnail_height">206dp</dimen>
     <dimen name="summary_card_height">120dp</dimen>
     <dimen name="video_thumb_width">92dp</dimen>
     <dimen name="video_thumb_height">72dp</dimen>

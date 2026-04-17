@@ -42,6 +42,21 @@
     <color name="color_onboarding_text_secondary">#9C938A</color>
     <color name="color_onboarding_progress_fill">#FFA40C</color>
     <color name="color_onboarding_progress_track">#3D4A4038</color>
+    <color name="color_scan_bg">#090705</color>
+    <color name="color_scan_surface">#E01A140F</color>
+    <color name="color_scan_surface_alt">#E6221B14</color>
+    <color name="color_scan_surface_active">#E6362614</color>
+    <color name="color_scan_border">#33E3AE42</color>
+    <color name="color_scan_note_border">#1FFFFFFF</color>
+    <color name="color_scan_note_surface">#99171410</color>
+    <color name="color_scan_gold">#FFB117</color>
+    <color name="color_scan_text_primary">#FFF7F0E7</color>
+    <color name="color_scan_text_secondary">#C4B7AA9C</color>
+    <color name="color_cleanup_success_surface">#D0735515</color>
+    <color name="color_cleanup_success_border">#40F2C35E</color>
+    <color name="color_cleanup_success_green">#15C68E</color>
+    <color name="color_cleanup_success_green_soft">#3326D79E</color>
+    <color name="color_cleanup_success_accent">#FFAD14</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

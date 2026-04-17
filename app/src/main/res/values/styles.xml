@@ -97,4 +97,6 @@
         <item name="backgroundTint">@color/color_onboarding_orange</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
 </resources>
+

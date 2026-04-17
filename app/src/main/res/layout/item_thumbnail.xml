@@ -1,53 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/thumbnail_size"
-    android:layout_height="@dimen/thumbnail_size"
-    android:layout_marginEnd="@dimen/space_12">
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardThumbnail"
+    android:layout_width="@dimen/result_thumbnail_width"
+    android:layout_height="@dimen/result_thumbnail_height"
+    android:layout_marginEnd="@dimen/space_14"
+    app:cardBackgroundColor="@color/color_scan_surface_alt"
+    app:cardCornerRadius="@dimen/radius_24"
+    app:cardElevation="0dp"
+    app:strokeColor="@android:color/transparent"
+    app:strokeWidth="1dp">
 
-    <ImageView
-        android:id="@+id/imageThumbnail"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_thumbnail_placeholder"
-        android:clipToOutline="true"
-        android:scaleType="centerCrop" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textBestBadge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space_8"
-        android:layout_marginTop="@dimen/space_8"
-        android:background="@drawable/bg_chip_best"
-        android:paddingStart="@dimen/space_8"
-        android:paddingTop="@dimen/space_4"
-        android:paddingEnd="@dimen/space_8"
-        android:paddingBottom="@dimen/space_4"
-        android:text="@string/best"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
+        <ImageView
+            android:id="@+id/imageThumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_thumbnail_placeholder"
+            android:scaleType="centerCrop" />
 
-    <ImageView
-        android:id="@+id/imageSelection"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_check_filled" />
+        <View
+            android:id="@+id/viewSelectedOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0"
+            android:background="#1FFFBE53" />
 
-    <TextView
-        android:id="@+id/textSizeBadge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="@dimen/space_8"
-        android:background="@drawable/bg_size_badge"
-        android:paddingStart="@dimen/space_8"
-        android:paddingTop="@dimen/space_4"
-        android:paddingEnd="@dimen/space_8"
-        android:paddingBottom="@dimen/space_4"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold" />
-</FrameLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_scan_results_image_scrim" />
+
+        <ImageView
+            android:id="@+id/imageSelection"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_marginEnd="@dimen/space_10"
+            android:background="@drawable/bg_scan_results_indicator"
+            android:padding="@dimen/space_8" />
+
+        <TextView
+            android:id="@+id/textSizeBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_marginStart="@dimen/space_12"
+            android:layout_marginBottom="@dimen/space_12"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SafKaro"
+rootProject.name = "Hive"
 include(":app")

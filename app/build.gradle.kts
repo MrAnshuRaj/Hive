@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.balraksh.safkaro"
+    namespace = "com.balraksh.hive"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.balraksh.safkaro"
+        applicationId = "com.balraksh.hive"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

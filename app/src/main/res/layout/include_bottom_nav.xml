@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomNavCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/space_12"
+    android:layout_marginEnd="@dimen/space_12"
+    android:layout_marginBottom="@dimen/space_12"
+    app:cardBackgroundColor="#FF181919"
+    app:cardCornerRadius="34dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#22151614"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/space_12"
+        android:paddingTop="@dimen/space_4"
+        android:paddingEnd="@dimen/space_12"
+        android:paddingBottom="@dimen/space_12">
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/space_10">
+
+            <View
+                android:id="@+id/navHomeIndicator"
+                android:layout_width="46dp"
+                android:layout_height="4dp"
+                android:background="@drawable/bg_bottom_nav_indicator"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/navHomeIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="@dimen/space_10"
+                android:src="@drawable/ic_nav_home" />
+
+            <TextView
+                android:id="@+id/navHomeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_6"
+                android:text="@string/bottom_nav_home"
+                android:textColor="#FFB1B0AA"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navClean"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/space_10">
+
+            <View
+                android:id="@+id/navCleanIndicator"
+                android:layout_width="46dp"
+                android:layout_height="4dp"
+                android:background="@drawable/bg_bottom_nav_indicator"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/navCleanIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="@dimen/space_10"
+                android:src="@drawable/ic_sparkle" />
+
+            <TextView
+                android:id="@+id/navCleanLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_6"
+                android:text="@string/bottom_nav_clean"
+                android:textColor="#FFB1B0AA"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navSwipe"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/space_10">
+
+            <View
+                android:layout_width="46dp"
+                android:layout_height="4dp"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/navSwipeIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="@dimen/space_10"
+                android:src="@drawable/ic_nav_swipe" />
+
+            <TextView
+                android:id="@+id/navSwipeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_6"
+                android:text="@string/bottom_nav_swipe"
+                android:textColor="#FFB1B0AA"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navCompress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/space_10">
+
+            <View
+                android:layout_width="46dp"
+                android:layout_height="4dp"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/navCompressIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="@dimen/space_10"
+                android:src="@drawable/ic_nav_compress" />
+
+            <TextView
+                android:id="@+id/navCompressLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_6"
+                android:text="@string/bottom_nav_compress"
+                android:textColor="#FFB1B0AA"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

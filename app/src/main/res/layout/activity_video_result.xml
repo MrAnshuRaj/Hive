@@ -225,3 +225,4 @@
             android:text="@string/compress_more" />
     </LinearLayout>
 </LinearLayout>
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/color_onboarding_bg" />
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:centerColor="#181108"
+                android:endColor="#0A0805"
+                android:startColor="#1E160D" />
+        </shape>
+    </item>
+</layer-list>

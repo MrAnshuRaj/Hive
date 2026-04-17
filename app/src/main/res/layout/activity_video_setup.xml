@@ -377,3 +377,4 @@
             android:text="@string/compress_now" />
     </LinearLayout>
 </LinearLayout>
+

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardFolder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/space_16"
+    app:cardBackgroundColor="@color/color_scan_surface_alt"
+    app:cardCornerRadius="@dimen/radius_24"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/color_scan_border"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="96dp"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/space_20"
+        android:paddingTop="@dimen/space_16"
+        android:paddingEnd="@dimen/space_20"
+        android:paddingBottom="@dimen/space_16">
+
+        <FrameLayout
+            android:id="@+id/layoutFolderIconTile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_folder_option_icon_tile">
+
+            <ImageView
+                android:id="@+id/imageFolderIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_16"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textFolderName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_scan_text_primary"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textFolderMeta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_6"
+                android:textColor="@color/color_scan_text_secondary"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewSelectionIndicator"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/bg_folder_option_indicator" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
