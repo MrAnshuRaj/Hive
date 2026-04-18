@@ -98,5 +98,35 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="Widget.SafKaro.Card.CompressSurface" parent="Widget.SafKaro.Card.Surface">
+        <item name="cardBackgroundColor">@color/color_scan_surface_alt</item>
+        <item name="strokeColor">@color/color_scan_border</item>
+        <item name="cardCornerRadius">@dimen/radius_28</item>
+    </style>
+
+    <style name="Widget.SafKaro.Card.CompressGlass" parent="Widget.SafKaro.Card.Surface">
+        <item name="cardBackgroundColor">#B218130F</item>
+        <item name="strokeColor">@color/color_scan_border</item>
+        <item name="cardCornerRadius">@dimen/radius_28</item>
+    </style>
+
+    <style name="Widget.SafKaro.Button.CompressPrimary" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="cornerRadius">@dimen/radius_pill</item>
+        <item name="backgroundTint">@color/color_scan_gold</item>
+        <item name="android:textColor">@color/color_scan_bg</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.SafKaro.Button.SuccessSecondary" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">52dp</item>
+        <item name="cornerRadius">@dimen/radius_20</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="strokeColor">@color/color_scan_border</item>
+        <item name="backgroundTint">@color/color_scan_surface</item>
+        <item name="android:textColor">@color/color_scan_text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
 

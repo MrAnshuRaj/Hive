@@ -1,7 +1,6 @@
 package com.balraksh.hive.ui.video;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,16 +20,8 @@ import com.balraksh.hive.repository.VideoCompressionSessionStore;
 import com.balraksh.hive.ui.BaseEdgeToEdgeActivity;
 import com.balraksh.hive.utils.FormatUtils;
 import com.balraksh.hive.utils.PermissionHelper;
-import com.balraksh.hive.video.CodecSupportUtils;
-import com.balraksh.hive.video.VideoAudioQualityOption;
-import com.balraksh.hive.video.VideoBitrateOption;
-import com.balraksh.hive.video.VideoCodecOption;
 import com.balraksh.hive.video.VideoCompressionPreset;
-import com.balraksh.hive.video.VideoCompressionRequest;
-import com.balraksh.hive.video.VideoFpsOption;
-import com.balraksh.hive.video.VideoResolutionOption;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class VideoSetupActivity extends BaseEdgeToEdgeActivity {
@@ -49,7 +40,7 @@ public class VideoSetupActivity extends BaseEdgeToEdgeActivity {
     private MaterialAutoCompleteTextView codecDropdown;
     private ImageView advancedChevron;
     private android.view.View advancedContent;
-    private List<VideoCodecOption> codecOptions = new ArrayList<>();
+    private VideoCompressionSettingsController settingsController;
 
     private VideoCompressionPreset selectedPreset = VideoCompressionPreset.BALANCED;
     private boolean advancedExpanded;
@@ -87,13 +78,21 @@ public class VideoSetupActivity extends BaseEdgeToEdgeActivity {
         codecDropdown = findViewById(R.id.dropdownCodec);
         advancedChevron = findViewById(R.id.imageAdvancedChevron);
         advancedContent = findViewById(R.id.layoutAdvancedContent);
+        settingsController = new VideoCompressionSettingsController(
+                this,
+                resolutionDropdown,
+                fpsDropdown,
+                bitrateDropdown,
+                audioQualityDropdown,
+                codecDropdown
+        );
 
         findViewById(R.id.buttonBack).setOnClickListener(v -> finish());
         advancedCard.setOnClickListener(v -> toggleAdvanced());
         findViewById(R.id.layoutAdvancedHeader).setOnClickListener(v -> toggleAdvanced());
         findViewById(R.id.buttonCompressNow).setOnClickListener(v -> ensureCompressionPermissions());
 
-        setupDropdowns();
+        settingsController.setupDropdowns(this::markAdvancedSelection);
         bindSelectedSummary();
 
         quickCard.setOnClickListener(v -> selectPreset(VideoCompressionPreset.QUICK));
@@ -118,67 +117,10 @@ public class VideoSetupActivity extends BaseEdgeToEdgeActivity {
         ));
     }
 
-    private void setupDropdowns() {
-        resolutionDropdown.setSimpleItems(new String[]{
-                getString(R.string.resolution_original),
-                getString(R.string.resolution_1080),
-                getString(R.string.resolution_720),
-                getString(R.string.resolution_480)
-        });
-        bitrateDropdown.setSimpleItems(new String[]{
-                getString(R.string.compression_strength_low),
-                getString(R.string.compression_strength_medium),
-                getString(R.string.compression_strength_high)
-        });
-        fpsDropdown.setSimpleItems(new String[]{
-                getString(R.string.fps_original),
-                getString(R.string.fps_30),
-                getString(R.string.fps_24)
-        });
-        audioQualityDropdown.setSimpleItems(new String[]{
-                getString(R.string.compression_strength_high),
-                getString(R.string.compression_strength_medium),
-                getString(R.string.compression_strength_low)
-        });
-        codecOptions = CodecSupportUtils.getSupportedVideoCodecOptions();
-        List<String> codecLabels = new ArrayList<>();
-        for (VideoCodecOption option : codecOptions) {
-            codecLabels.add(option.getDisplayName());
-        }
-        codecDropdown.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, codecLabels));
-        resolutionDropdown.setOnItemClickListener((parent, view, position, id) -> markAdvancedSelection());
-        bitrateDropdown.setOnItemClickListener((parent, view, position, id) -> markAdvancedSelection());
-        fpsDropdown.setOnItemClickListener((parent, view, position, id) -> markAdvancedSelection());
-        audioQualityDropdown.setOnItemClickListener((parent, view, position, id) -> markAdvancedSelection());
-        codecDropdown.setOnItemClickListener((parent, view, position, id) -> markAdvancedSelection());
-    }
-
     private void selectPreset(@NonNull VideoCompressionPreset preset) {
         selectedPreset = preset;
         advancedModeSelected = false;
-        switch (preset) {
-            case QUICK:
-                resolutionDropdown.setText(getString(R.string.resolution_original), false);
-                bitrateDropdown.setText(getString(R.string.compression_strength_low), false);
-                fpsDropdown.setText(getString(R.string.fps_original), false);
-                audioQualityDropdown.setText(getString(R.string.compression_strength_high), false);
-                codecDropdown.setText(getCodecDisplayName(CodecSupportUtils.MIME_AVC), false);
-                break;
-            case BALANCED:
-                resolutionDropdown.setText(getString(R.string.resolution_1080), false);
-                bitrateDropdown.setText(getString(R.string.compression_strength_medium), false);
-                fpsDropdown.setText(getString(R.string.fps_30), false);
-                audioQualityDropdown.setText(getString(R.string.compression_strength_medium), false);
-                codecDropdown.setText(getCodecDisplayName(resolveBalancedCodecMimeType()), false);
-                break;
-            case MAX:
-                resolutionDropdown.setText(getString(R.string.resolution_720), false);
-                bitrateDropdown.setText(getString(R.string.compression_strength_high), false);
-                fpsDropdown.setText(getString(R.string.fps_24), false);
-                audioQualityDropdown.setText(getString(R.string.compression_strength_low), false);
-                codecDropdown.setText(getCodecDisplayName(resolveMaxCodecMimeType()), false);
-                break;
-        }
+        settingsController.applyPreset(preset);
         bindPresetState();
         bindAdvancedState();
     }
@@ -218,100 +160,8 @@ public class VideoSetupActivity extends BaseEdgeToEdgeActivity {
     }
 
     private void startCompression() {
-        sessionStore.startCompression(new VideoCompressionRequest(
-                selectedPreset,
-                resolveResolutionOption(),
-                resolveFpsOption(),
-                resolveBitrateOption(),
-                resolveCodecMimeType(),
-                resolveAudioQualityOption().getBitrate()
-        ));
+        sessionStore.startCompression(settingsController.buildRequest(selectedPreset));
         startActivity(new android.content.Intent(this, VideoCompressingActivity.class));
-    }
-
-    @NonNull
-    private VideoResolutionOption resolveResolutionOption() {
-        CharSequence text = resolutionDropdown.getText();
-        if (getString(R.string.resolution_1080).contentEquals(text)) {
-            return VideoResolutionOption.P1080;
-        }
-        if (getString(R.string.resolution_720).contentEquals(text)) {
-            return VideoResolutionOption.P720;
-        }
-        if (getString(R.string.resolution_480).contentEquals(text)) {
-            return VideoResolutionOption.P480;
-        }
-        return VideoResolutionOption.ORIGINAL;
-    }
-
-    @NonNull
-    private VideoFpsOption resolveFpsOption() {
-        CharSequence text = fpsDropdown.getText();
-        if (getString(R.string.fps_30).contentEquals(text)) {
-            return VideoFpsOption.FPS_30;
-        }
-        if (getString(R.string.fps_24).contentEquals(text)) {
-            return VideoFpsOption.FPS_24;
-        }
-        return VideoFpsOption.ORIGINAL;
-    }
-
-    @NonNull
-    private VideoBitrateOption resolveBitrateOption() {
-        CharSequence text = bitrateDropdown.getText();
-        if (getString(R.string.compression_strength_high).contentEquals(text)) {
-            return VideoBitrateOption.HIGH;
-        }
-        if (getString(R.string.compression_strength_medium).contentEquals(text)) {
-            return VideoBitrateOption.MEDIUM;
-        }
-        return VideoBitrateOption.LOW;
-    }
-
-    @NonNull
-    private VideoAudioQualityOption resolveAudioQualityOption() {
-        CharSequence text = audioQualityDropdown.getText();
-        if (getString(R.string.compression_strength_low).contentEquals(text)) {
-            return VideoAudioQualityOption.LOW;
-        }
-        if (getString(R.string.compression_strength_medium).contentEquals(text)) {
-            return VideoAudioQualityOption.MEDIUM;
-        }
-        return VideoAudioQualityOption.HIGH;
-    }
-
-    @NonNull
-    private String resolveCodecMimeType() {
-        CharSequence text = codecDropdown.getText();
-        for (VideoCodecOption option : codecOptions) {
-            if (option.getDisplayName().contentEquals(text)) {
-                return option.getMimeType();
-            }
-        }
-        return CodecSupportUtils.getDefaultCodecMimeType(codecOptions);
-    }
-
-    @NonNull
-    private String resolveBalancedCodecMimeType() {
-        if (CodecSupportUtils.hasCodec(codecOptions, CodecSupportUtils.MIME_HEVC)) {
-            return CodecSupportUtils.MIME_HEVC;
-        }
-        return CodecSupportUtils.getDefaultCodecMimeType(codecOptions);
-    }
-
-    @NonNull
-    private String resolveMaxCodecMimeType() {
-        return resolveBalancedCodecMimeType();
-    }
-
-    @NonNull
-    private String getCodecDisplayName(@NonNull String mimeType) {
-        for (VideoCodecOption option : codecOptions) {
-            if (mimeType.equals(option.getMimeType())) {
-                return option.getDisplayName();
-            }
-        }
-        return CodecSupportUtils.getDisplayName(CodecSupportUtils.getDefaultCodecMimeType(codecOptions));
     }
 
     private void markAdvancedSelection() {

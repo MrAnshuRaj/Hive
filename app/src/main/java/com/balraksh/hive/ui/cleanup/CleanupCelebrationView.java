@@ -23,6 +23,7 @@ public class CleanupCelebrationView extends View {
     private final RectF rect = new RectF();
     private final Particle[] particles = new Particle[PARTICLE_COUNT];
     private final Random random = new Random();
+    private int[] palette;
 
     private ValueAnimator animator;
     private float progress;
@@ -33,7 +34,23 @@ public class CleanupCelebrationView extends View {
 
     public CleanupCelebrationView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        palette = new int[]{
+                getContext().getColor(R.color.color_cleanup_success_green),
+                getContext().getColor(R.color.color_cleanup_success_accent),
+                getContext().getColor(R.color.white)
+        };
         initParticles();
+    }
+
+    public void setPalette(int... colors) {
+        if (colors == null || colors.length == 0) {
+            return;
+        }
+        palette = colors.clone();
+        for (Particle particle : particles) {
+            particle.color = palette[random.nextInt(palette.length)];
+        }
+        invalidate();
     }
 
     private void initParticles() {
@@ -111,12 +128,7 @@ public class CleanupCelebrationView extends View {
         particle.round = random.nextBoolean();
         particle.alpha = 0.4f + random.nextFloat() * 0.45f;
 
-        int[] colors = {
-                getContext().getColor(R.color.color_cleanup_success_green),
-                getContext().getColor(R.color.color_cleanup_success_accent),
-                getContext().getColor(R.color.white)
-        };
-        particle.color = colors[random.nextInt(colors.length)];
+        particle.color = palette[random.nextInt(palette.length)];
     }
 
     private float dp(float value) {

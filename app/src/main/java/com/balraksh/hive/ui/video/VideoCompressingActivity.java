@@ -84,17 +84,17 @@ public class VideoCompressingActivity extends BaseEdgeToEdgeActivity implements 
         VideoCompressionProgress progress = sessionStore.getLatestProgress();
         if (progress == null) {
             currentFileView.setText("");
-            currentPositionView.setText("");
-            stageView.setText(R.string.compression_stage_preparing);
+            currentPositionView.setText(getString(R.string.video_processing_count, 0, sessionStore.getSelectedVideos().size()));
+            stageView.setText(R.string.progress);
             progressValueView.setText("0%");
             progressIndicator.setProgress(0);
-            estimatedTimeView.setText(R.string.less_than_a_minute);
+            estimatedTimeView.setText(R.string.video_progress_status);
             return;
         }
 
         currentFileView.setText(progress.getCurrentFileName());
         currentPositionView.setText(getString(
-                R.string.video_position_count,
+                R.string.video_processing_count,
                 progress.getCurrentIndex(),
                 progress.getTotalCount()
         ));
@@ -106,7 +106,7 @@ public class VideoCompressingActivity extends BaseEdgeToEdgeActivity implements 
 
     private String formatRemaining(long remainingMs) {
         if (remainingMs <= 60_000L) {
-            return getString(R.string.less_than_a_minute);
+            return getString(R.string.video_progress_status);
         }
         int minutes = (int) Math.ceil(remainingMs / 60_000d);
         return getString(R.string.remaining_minutes, minutes);

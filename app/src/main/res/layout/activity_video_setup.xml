@@ -354,8 +354,13 @@
                                 android:id="@+id/dropdownCodec"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:ellipsize="end"
                                 android:focusable="false"
-                                android:inputType="none" />
+                                android:inputType="none"
+                                android:maxLines="1"
+                                android:scrollHorizontally="false"
+                                android:textAlignment="viewStart"
+                                android:textDirection="locale" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                 </LinearLayout>

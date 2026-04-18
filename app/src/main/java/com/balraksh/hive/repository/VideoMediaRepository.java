@@ -50,6 +50,7 @@ public class VideoMediaRepository {
                 MediaStore.Video.Media.DISPLAY_NAME,
                 MediaStore.Video.Media.SIZE,
                 MediaStore.Video.Media.DURATION,
+                MediaStore.Video.Media.DATE_ADDED,
                 MediaStore.Video.Media.WIDTH,
                 MediaStore.Video.Media.HEIGHT
         };
@@ -69,6 +70,7 @@ public class VideoMediaRepository {
             int nameIndex = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME);
             int sizeIndex = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE);
             int durationIndex = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION);
+            int dateAddedIndex = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_ADDED);
             int widthIndex = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.WIDTH);
             int heightIndex = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.HEIGHT);
 
@@ -77,6 +79,7 @@ public class VideoMediaRepository {
                 String name = cursor.getString(nameIndex);
                 long size = cursor.getLong(sizeIndex);
                 long duration = cursor.getLong(durationIndex);
+                long dateAddedMs = cursor.getLong(dateAddedIndex) * 1000L;
                 int width = cursor.getInt(widthIndex);
                 int height = cursor.getInt(heightIndex);
                 if (size <= 0L || duration <= 0L) {
@@ -91,6 +94,7 @@ public class VideoMediaRepository {
                         name,
                         size,
                         duration,
+                        dateAddedMs,
                         width,
                         height
                 ));

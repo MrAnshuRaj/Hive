@@ -24,6 +24,9 @@
             android:name=".ui.settings.SettingsActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.video.VideoSuccessActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.video.VideoResultActivity"
             android:exported="false" />
         <activity

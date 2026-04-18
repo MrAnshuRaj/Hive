@@ -108,6 +108,7 @@
             android:paddingTop="@dimen/space_10">
 
             <View
+                android:id="@+id/navSwipeIndicator"
                 android:layout_width="46dp"
                 android:layout_height="4dp"
                 android:visibility="invisible" />
@@ -135,13 +136,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingTop="@dimen/space_10">
 
             <View
+                android:id="@+id/navCompressIndicator"
                 android:layout_width="46dp"
                 android:layout_height="4dp"
+                android:background="@drawable/bg_bottom_nav_indicator"
                 android:visibility="invisible" />
 
             <ImageView

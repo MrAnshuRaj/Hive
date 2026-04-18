@@ -13,6 +13,7 @@ public class VideoItem {
     private final String displayName;
     private final long sizeBytes;
     private final long durationMs;
+    private final long dateAddedMs;
     private final int width;
     private final int height;
 
@@ -22,6 +23,7 @@ public class VideoItem {
             @NonNull String displayName,
             long sizeBytes,
             long durationMs,
+            long dateAddedMs,
             int width,
             int height
     ) {
@@ -30,6 +32,7 @@ public class VideoItem {
         this.displayName = displayName;
         this.sizeBytes = sizeBytes;
         this.durationMs = durationMs;
+        this.dateAddedMs = dateAddedMs;
         this.width = width;
         this.height = height;
     }
@@ -59,6 +62,10 @@ public class VideoItem {
 
     public long getDurationMs() {
         return durationMs;
+    }
+
+    public long getDateAddedMs() {
+        return dateAddedMs;
     }
 
     public int getWidth() {

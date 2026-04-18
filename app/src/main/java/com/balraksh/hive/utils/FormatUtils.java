@@ -1,12 +1,17 @@
 package com.balraksh.hive.utils;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public final class FormatUtils {
 
     private static final long KB = 1024L;
     private static final long MB = KB * 1024L;
     private static final long GB = MB * 1024L;
+    private static final SimpleDateFormat SHORT_DATE_FORMAT =
+            new SimpleDateFormat("MMM d", Locale.getDefault());
 
     private FormatUtils() {
     }
@@ -40,6 +45,10 @@ public final class FormatUtils {
 
     public static String formatPercentage(float fraction) {
         return new DecimalFormat("0").format(fraction * 100f) + "%";
+    }
+
+    public static String formatShortDate(long timeMs) {
+        return SHORT_DATE_FORMAT.format(new Date(timeMs));
     }
 }
 

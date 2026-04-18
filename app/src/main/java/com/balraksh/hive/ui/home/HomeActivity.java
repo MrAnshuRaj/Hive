@@ -378,7 +378,7 @@ public class HomeActivity extends BaseEdgeToEdgeActivity implements HomeProfileB
         if (!ensurePermissions()) {
             return;
         }
-        startActivity(new Intent(this, VideoSelectActivity.class));
+        startActivity(BottomNavController.createCompressIntent(this));
     }
 
     private boolean ensurePermissions() {

@@ -57,6 +57,8 @@
     <color name="color_cleanup_success_green">#15C68E</color>
     <color name="color_cleanup_success_green_soft">#3326D79E</color>
     <color name="color_cleanup_success_accent">#FFAD14</color>
+    <color name="color_video_success_surface">#B36F5314</color>
+    <color name="color_video_success_border">#406998FF</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

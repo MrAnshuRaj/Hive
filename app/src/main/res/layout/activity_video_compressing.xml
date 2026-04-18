@@ -1,137 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_background"
-    android:orientation="vertical"
-    android:paddingStart="@dimen/space_20"
-    android:paddingTop="@dimen/space_24"
-    android:paddingEnd="@dimen/space_20"
-    android:paddingBottom="@dimen/space_32">
+    android:background="@drawable/bg_scan_setup_screen">
 
     <ImageView
         android:id="@+id/buttonBack"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_back_arrow" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_24"
+        android:background="@drawable/bg_compress_button_circle"
+        android:padding="10dp"
+        android:src="@drawable/ic_back_arrow"
+        android:tint="@color/color_scan_text_primary" />
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.SafKaro.Card.CompressGlass"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/space_72">
-
-        <FrameLayout
-            android:layout_width="88dp"
-            android:layout_height="88dp"
-            android:background="@drawable/bg_icon_circle">
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/progressCircular"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_gravity="center"
-                android:indeterminate="true" />
-        </FrameLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_32"
-            android:text="@string/compressing_video"
-            android:textColor="@color/color_text_primary"
-            android:textSize="32sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textCurrentFile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_10"
-            android:textColor="@color/color_text_secondary"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textCurrentPosition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_4"
-            android:textColor="@color/color_text_hint"
-            android:textSize="14sp" />
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginTop="@dimen/space_72"
+        android:layout_marginEnd="@dimen/space_16"
+        android:layout_marginBottom="@dimen/space_20">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_32"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/space_24"
+            android:paddingTop="@dimen/space_32"
+            android:paddingEnd="@dimen/space_24"
+            android:paddingBottom="@dimen/space_32">
+
+            <FrameLayout
+                android:layout_width="132dp"
+                android:layout_height="132dp"
+                android:background="@drawable/bg_compress_percent_pill"
+                android:padding="@dimen/space_24">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_video"
+                    android:tint="@color/color_scan_gold" />
+            </FrameLayout>
 
             <TextView
-                android:id="@+id/textStage"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/color_text_secondary"
+                android:layout_marginTop="@dimen/space_32"
+                android:text="@string/video_compression_header_title"
+                android:textColor="@color/color_scan_text_primary"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textCurrentPosition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_12"
+                android:text="@string/video_processing_count"
+                android:textColor="@color/color_scan_text_secondary"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textProgressValue"
+                android:id="@+id/textCurrentFile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/color_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/progressLinear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_10"
-            android:max="100" />
-
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.SafKaro.Card.Surface"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_20">
+                android:layout_marginTop="@dimen/space_8"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textColor="@color/color_scan_text_secondary"
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:padding="@dimen/space_20">
+                android:layout_marginTop="@dimen/space_48"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/textStage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/progress"
+                    android:textColor="@color/color_scan_text_secondary"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/textProgressValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/estimated_time"
-                    android:textColor="@color/color_text_secondary"
-                    android:textSize="15sp" />
+                    android:text="0%"
+                    android:textColor="@color/color_scan_gold"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressLinear"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="@dimen/space_12"
+                android:max="100"
+                app:indicatorColor="@color/color_scan_gold"
+                app:trackColor="#35FFFFFF"
+                app:trackCornerRadius="4dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_24"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/bg_compress_button_circle_active" />
 
                 <TextView
                     android:id="@+id/textEstimatedTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_8"
-                    android:textColor="@color/color_text_primary"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="@dimen/space_10"
+                    android:text="@string/video_progress_status"
+                    android:textColor="@color/color_scan_text_secondary"
+                    android:textSize="16sp" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:id="@+id/buttonRunInBackground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_20"
-            android:text="@string/run_in_background"
-            android:textColor="@color/color_primary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-</LinearLayout>
-
+            <TextView
+                android:id="@+id/buttonRunInBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_32"
+                android:text="@string/run_in_background"
+                android:textColor="@color/color_scan_gold"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>
