@@ -9,17 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.balraksh.hive.R;
+import com.balraksh.hive.data.BucketOption;
+import com.balraksh.hive.utils.FormatUtils;
+import com.google.android.material.card.MaterialCardView;
+
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-
-import com.balraksh.hive.R;
-import com.balraksh.hive.data.BucketOption;
-import com.balraksh.hive.utils.FormatUtils;
-import com.google.android.material.card.MaterialCardView;
 
 public class FolderOptionAdapter extends RecyclerView.Adapter<FolderOptionAdapter.FolderViewHolder> {
 
@@ -39,6 +39,13 @@ public class FolderOptionAdapter extends RecyclerView.Adapter<FolderOptionAdapte
         items.clear();
         items.addAll(newItems);
         notifyDataSetChanged();
+    }
+
+    public void setSelectedBucketIds(@NonNull Set<Long> bucketIds) {
+        selectedBucketIds.clear();
+        selectedBucketIds.addAll(bucketIds);
+        notifyDataSetChanged();
+        listener.onSelectionChanged(getSelectedBuckets());
     }
 
     @NonNull
