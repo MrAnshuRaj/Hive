@@ -4,6 +4,7 @@ public class SmartInsightItem {
 
     public static final int ACTION_COMPRESS_VIDEOS = 1;
     public static final int ACTION_REMOVE_DUPLICATES = 2;
+    public static final int ACTION_REVIEW_SIMILAR = 3;
 
     private final int actionType;
     private final int iconResId;

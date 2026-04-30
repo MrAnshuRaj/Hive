@@ -32,7 +32,6 @@ public class OnboardingActivity extends BaseEdgeToEdgeActivity {
 
     private ViewPager2 viewPager;
     private OnboardingSegmentedProgressView segmentedProgressView;
-    private TextView skipTextView;
     private TextView legalTextView;
     private MaterialButton ctaButton;
     private View ctaShineView;
@@ -51,7 +50,6 @@ public class OnboardingActivity extends BaseEdgeToEdgeActivity {
 
         onboardingPreferences = new OnboardingPreferences(this);
         segmentedProgressView = findViewById(R.id.viewOnboardingProgress);
-        skipTextView = findViewById(R.id.textOnboardingSkip);
         legalTextView = findViewById(R.id.textOnboardingLegal);
         ctaButton = findViewById(R.id.buttonOnboardingCta);
         ctaShineView = findViewById(R.id.viewOnboardingCtaShine);
@@ -66,7 +64,6 @@ public class OnboardingActivity extends BaseEdgeToEdgeActivity {
         viewPager.setOffscreenPageLimit(1);
         viewPager.registerOnPageChangeCallback(pageChangeCallback);
 
-        skipTextView.setOnClickListener(v -> completeOnboarding());
         ctaButton.setOnClickListener(v -> {
             if (completingOnboarding) {
                 return;
@@ -115,7 +112,6 @@ public class OnboardingActivity extends BaseEdgeToEdgeActivity {
     private void bindPageState(int position) {
         boolean isLastPage = position == TOTAL_SLIDE_COUNT - 1;
         segmentedProgressView.setVisibility(View.VISIBLE);
-        skipTextView.setVisibility(View.VISIBLE);
         legalTextView.setVisibility(View.GONE);
         ctaButton.setText(isLastPage
                 ? R.string.onboarding_cta_continue
@@ -129,7 +125,6 @@ public class OnboardingActivity extends BaseEdgeToEdgeActivity {
             return;
         }
         completingOnboarding = true;
-        skipTextView.setEnabled(false);
         ctaButton.setEnabled(false);
         viewPager.setUserInputEnabled(false);
         stopCtaShine();

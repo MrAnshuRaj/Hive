@@ -83,7 +83,7 @@ public class VideoSelectActivity extends BaseEdgeToEdgeActivity {
     private TextView savingsView;
     private TextView selectedSummaryView;
     private View advancedSettingsButton;
-    private TextView advancedSettingsLabelView;
+    private ImageView advancedSettingsIconView;
     private ImageView advancedChevronView;
     private View advancedSettingsOverlay;
     private View advancedSettingsSheet;
@@ -222,7 +222,7 @@ public class VideoSelectActivity extends BaseEdgeToEdgeActivity {
         savingsView = findViewById(R.id.textPotentialSavingsValue);
         selectedSummaryView = findViewById(R.id.textSelectedSummary);
         advancedSettingsButton = findViewById(R.id.buttonAdvancedSettings);
-        advancedSettingsLabelView = findViewById(R.id.textAdvancedSettings);
+        advancedSettingsIconView = findViewById(R.id.imageAdvancedSettings);
         advancedChevronView = findViewById(R.id.imageAdvancedChevron);
         advancedSettingsOverlay = findViewById(R.id.layoutAdvancedSettingsOverlay);
         advancedSettingsSheet = findViewById(R.id.cardAdvancedSettingsSheet);
@@ -319,7 +319,7 @@ public class VideoSelectActivity extends BaseEdgeToEdgeActivity {
         advancedSettingsButton.setBackgroundResource(active
                 ? R.drawable.bg_compress_button_circle_active
                 : R.drawable.bg_compress_button_circle);
-        advancedSettingsLabelView.setTextColor(getColor(active ? R.color.color_scan_bg : R.color.color_scan_text_primary));
+        advancedSettingsIconView.setColorFilter(getColor(active ? R.color.color_scan_bg : R.color.color_scan_text_primary));
         advancedChevronView.setImageResource(isAdvancedSettingsVisible()
                 ? R.drawable.ic_chevron_up
                 : R.drawable.ic_chevron_down);

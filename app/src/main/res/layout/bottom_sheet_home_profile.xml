@@ -171,16 +171,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_10"
         android:background="@drawable/bg_home_stat_card"
-        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:padding="@dimen/space_16">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/home_privacy_security"
             android:textColor="@color/color_onboarding_text_primary"
             android:textSize="16sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:contentDescription="@string/home_opens_in_web"
+            android:src="@drawable/ic_open_in_web"
+            android:tint="#C5B39F" />
     </LinearLayout>
 
     <TextView
@@ -234,16 +243,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_10"
         android:background="@drawable/bg_home_stat_card"
-        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:padding="@dimen/space_16">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/home_help_support"
             android:textColor="@color/color_onboarding_text_primary"
             android:textSize="16sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:contentDescription="@string/home_opens_in_web"
+            android:src="@drawable/ic_open_in_web"
+            android:tint="#C5B39F" />
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton

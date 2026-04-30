@@ -1,9 +1,11 @@
 package com.balraksh.hive.ui.settings;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.view.WindowInsetsControllerCompat;
@@ -37,9 +39,12 @@ public class SettingsActivity extends BaseEdgeToEdgeActivity {
             startActivity(intent);
         });
         findViewById(R.id.rowSettingsHelp).setOnClickListener(v -> {
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:support@safkaro.app"));
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.home_support_subject));
-            startActivity(Intent.createChooser(emailIntent, getString(R.string.home_help_support)));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.home_help_support_url)));
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException exception) {
+                Toast.makeText(this, R.string.home_opens_in_web, Toast.LENGTH_SHORT).show();
+            }
         });
 
         if (SECTION_PRIVACY.equals(getIntent().getStringExtra(EXTRA_OPEN_SECTION))) {

@@ -23,6 +23,9 @@
     <string name="smart_insight_duplicates_title">Remove %1$d duplicates</string>
     <string name="smart_insight_duplicates_subtitle">Free %1$s from repeated shots</string>
     <string name="smart_insight_duplicates_cta">Scan Duplicates</string>
+    <string name="smart_insight_similar_title">Review %1$d similar photos</string>
+    <string name="smart_insight_similar_subtitle">Sort through %1$s of near-duplicate shots</string>
+    <string name="smart_insight_similar_cta">Clean Similar Photos</string>
     <string name="smart_insight_screenshots_title">Review %1$d screenshots</string>
     <string name="smart_insight_screenshots_subtitle">Sort through %1$s of screen captures</string>
     <string name="smart_insight_screenshots_cta">Clean Screenshots</string>
@@ -38,6 +41,9 @@
     <string name="home_account_settings">Account Settings</string>
     <string name="home_notifications">Notifications</string>
     <string name="home_privacy_security">Privacy &amp; Security</string>
+    <string name="home_privacy_policy_url">https://www.balraksh.com/hive-privacy-policy</string>
+    <string name="home_help_support_url">https://forms.gle/dBSzaZMU62km1wXG7</string>
+    <string name="home_opens_in_web">Opens in web browser</string>
     <string name="home_rate_hive">Rate Hive</string>
     <string name="home_share_friends">Share with Friends</string>
     <string name="home_help_support">Help &amp; Support</string>
@@ -244,6 +250,7 @@
     <string name="video_quality_hint_medium">~50% smaller</string>
     <string name="video_quality_hint_low">~65% smaller</string>
     <string name="video_select_section_title">Select Videos</string>
+    <string name="video_sort_options">Sort videos</string>
     <string name="video_sort_newest">Newest first</string>
     <string name="video_sort_oldest">Oldest first</string>
     <string name="video_sort_largest">Largest first</string>
@@ -322,7 +329,6 @@
     <string name="swipe_last_month">Last Month</string>
     <string name="swipe_success_subtitle">You\'ve successfully sorted your photos.</string>
     <string name="swipe_success_reviewed_label">Reviewed</string>
-    <string name="onboarding_skip">Skip</string>
     <string name="onboarding_cta_next">Next</string>
     <string name="onboarding_cta_continue">Continue</string>
     <string name="onboarding_legal_text">By continuing, you agree to our Terms of Service &amp; Privacy Policy.</string>

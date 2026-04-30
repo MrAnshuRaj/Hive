@@ -12,6 +12,7 @@ import android.provider.Settings;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,9 @@ import com.balraksh.hive.utils.FormatUtils;
 import com.balraksh.hive.utils.PermissionHelper;
 
 public class HomeActivity extends BaseEdgeToEdgeActivity implements HomeProfileBottomSheet.Callbacks {
+
+    private static final int INSIGHT_ACTIVE_DOT_WIDTH_DP = 38;
+    private static final int INSIGHT_INACTIVE_DOT_SIZE_DP = 10;
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final Handler handler = new Handler(Looper.getMainLooper());
@@ -229,8 +233,11 @@ public class HomeActivity extends BaseEdgeToEdgeActivity implements HomeProfileB
         smartInsights = data.getSmartInsights();
         currentInsightIndex = Math.min(currentInsightIndex, Math.max(0, smartInsights.size() - 1));
         insightsPagerAdapter.setItems(smartInsights);
+        layoutInsightsVisibility(!smartInsights.isEmpty());
         if (!smartInsights.isEmpty()) {
             insightsPager.setCurrentItem(currentInsightIndex, false);
+        } else {
+            currentInsightIndex = 0;
         }
         updateIndicators();
         scheduleInsightRotation();
@@ -258,9 +265,18 @@ public class HomeActivity extends BaseEdgeToEdgeActivity implements HomeProfileB
 
     private void updateIndicators() {
         for (int i = 0; i < indicatorDots.length; i++) {
-            indicatorDots[i].setBackgroundResource(
-                    i == currentInsightIndex ? R.drawable.bg_home_indicator_active : R.drawable.bg_home_indicator_inactive
-            );
+            View dot = indicatorDots[i];
+            boolean isVisible = smartInsights != null && i < smartInsights.size();
+            boolean isActive = isVisible && i == currentInsightIndex;
+            dot.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+            dot.setBackgroundResource(isActive
+                    ? R.drawable.bg_home_indicator_active
+                    : R.drawable.bg_home_indicator_inactive);
+
+            ViewGroup.LayoutParams layoutParams = dot.getLayoutParams();
+            layoutParams.width = dpToPx(isActive ? INSIGHT_ACTIVE_DOT_WIDTH_DP : INSIGHT_INACTIVE_DOT_SIZE_DP);
+            layoutParams.height = dpToPx(INSIGHT_INACTIVE_DOT_SIZE_DP);
+            dot.setLayoutParams(layoutParams);
         }
     }
 
@@ -340,6 +356,8 @@ public class HomeActivity extends BaseEdgeToEdgeActivity implements HomeProfileB
             openCompressVideos();
         } else if (item.getActionType() == SmartInsightItem.ACTION_REMOVE_DUPLICATES) {
             openDuplicateFlow();
+        } else if (item.getActionType() == SmartInsightItem.ACTION_REVIEW_SIMILAR) {
+            openSimilarFlow();
         }
     }
 
@@ -393,6 +411,14 @@ public class HomeActivity extends BaseEdgeToEdgeActivity implements HomeProfileB
         return value * getResources().getDisplayMetrics().density;
     }
 
+    private int dpToPx(int value) {
+        return Math.round(dp(value));
+    }
+
+    private void layoutInsightsVisibility(boolean visible) {
+        findViewById(R.id.layoutInsightSection).setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
     @Override
     public void onOpenPremium() {
         startActivity(new Intent(this, PremiumActivity.class));
@@ -412,9 +438,12 @@ public class HomeActivity extends BaseEdgeToEdgeActivity implements HomeProfileB
 
     @Override
     public void onOpenPrivacy() {
-        Intent intent = new Intent(this, SettingsActivity.class);
-        intent.putExtra(SettingsActivity.EXTRA_OPEN_SECTION, SettingsActivity.SECTION_PRIVACY);
-        startActivity(intent);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.home_privacy_policy_url)));
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException exception) {
+            Toast.makeText(this, R.string.home_opens_in_web, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -445,10 +474,12 @@ public class HomeActivity extends BaseEdgeToEdgeActivity implements HomeProfileB
 
     @Override
     public void onHelpAndSupport() {
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-        emailIntent.setData(Uri.parse("mailto:support@safkaro.app"));
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.home_support_subject));
-        startActivity(Intent.createChooser(emailIntent, getString(R.string.home_help_support)));
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.home_help_support_url)));
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException exception) {
+            Toast.makeText(this, R.string.home_opens_in_web, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

@@ -293,16 +293,30 @@ public class HomeDashboardRepository {
                 ),
                 appContext.getString(R.string.smart_insight_compress_cta)
         ));
-        items.add(new SmartInsightItem(
-                SmartInsightItem.ACTION_REMOVE_DUPLICATES,
-                R.drawable.ic_photo,
-                appContext.getString(R.string.smart_insight_duplicates_title, quickCleanup.duplicateCount),
-                appContext.getString(
-                        R.string.smart_insight_duplicates_subtitle,
-                        FormatUtils.formatStorage(Math.max(quickCleanup.duplicateBytes, cleanupPreferences.getLastScanPotentialBytes()))
-                ),
-                appContext.getString(R.string.smart_insight_duplicates_cta)
-        ));
+        if (quickCleanup.duplicateCount > 0) {
+            items.add(new SmartInsightItem(
+                    SmartInsightItem.ACTION_REMOVE_DUPLICATES,
+                    R.drawable.ic_photo,
+                    appContext.getString(R.string.smart_insight_duplicates_title, quickCleanup.duplicateCount),
+                    appContext.getString(
+                            R.string.smart_insight_duplicates_subtitle,
+                            FormatUtils.formatStorage(quickCleanup.duplicateBytes)
+                    ),
+                    appContext.getString(R.string.smart_insight_duplicates_cta)
+            ));
+        }
+        if (quickCleanup.similarCount > 0) {
+            items.add(new SmartInsightItem(
+                    SmartInsightItem.ACTION_REVIEW_SIMILAR,
+                    R.drawable.ic_screenshot,
+                    appContext.getString(R.string.smart_insight_similar_title, quickCleanup.similarCount),
+                    appContext.getString(
+                            R.string.smart_insight_similar_subtitle,
+                            FormatUtils.formatStorage(quickCleanup.similarBytes)
+                    ),
+                    appContext.getString(R.string.smart_insight_similar_cta)
+            ));
+        }
         return items;
     }
 
