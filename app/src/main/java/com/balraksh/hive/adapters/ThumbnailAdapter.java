@@ -23,6 +23,8 @@ import com.balraksh.hive.utils.FormatUtils;
 
 public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.ThumbnailViewHolder> {
 
+    private static final String PAYLOAD_SELECTION = "selection";
+
     public interface OnThumbnailClickListener {
         void onThumbnailClick(MediaImageItem item, boolean willSelect);
     }
@@ -55,20 +57,14 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
                 .centerCrop()
                 .into(holder.imageView);
 
-        holder.card.setStrokeColor(holder.itemView.getContext().getColor(
-                isSelected ? R.color.color_scan_gold : android.R.color.transparent
-        ));
-        holder.selectionIcon.setBackgroundResource(
-                isSelected ? R.drawable.bg_scan_results_indicator_selected : R.drawable.bg_scan_results_indicator
-        );
-        holder.selectionIcon.setImageResource(isSelected ? R.drawable.ic_check_small : 0);
-        holder.selectionIcon.setColorFilter(holder.itemView.getContext().getColor(R.color.white));
-        holder.selectionIcon.setAlpha(isBest ? 0.95f : 1f);
-        holder.selectedOverlay.setAlpha(isSelected ? 1f : 0f);
-        holder.imageView.setAlpha(isSelected ? 0.94f : 1f);
+        bindSelectionState(holder, isBest, isSelected);
         holder.sizeText.setText(FormatUtils.formatStorage(item.getSizeBytes()));
         holder.itemView.setOnClickListener(v -> {
             if (!isBest && listener != null) {
+                int adapterPosition = holder.getBindingAdapterPosition();
+                if (adapterPosition == RecyclerView.NO_POSITION) {
+                    return;
+                }
                 v.animate()
                         .scaleX(0.97f)
                         .scaleY(0.97f)
@@ -80,8 +76,43 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
                                 .start())
                         .start();
                 listener.onThumbnailClick(item, !ScanSessionStore.getInstance().isSelected(item.getId()));
+                notifyItemChanged(adapterPosition, PAYLOAD_SELECTION);
             }
         });
+    }
+
+    @Override
+    public void onBindViewHolder(
+            @NonNull ThumbnailViewHolder holder,
+            int position,
+            @NonNull List<Object> payloads
+    ) {
+        if (payloads.contains(PAYLOAD_SELECTION)) {
+            MediaImageItem item = items.get(position);
+            boolean isBest = item.getId() == group.getBestItemId();
+            boolean isSelected = ScanSessionStore.getInstance().isSelected(item.getId());
+            bindSelectionState(holder, isBest, isSelected);
+            return;
+        }
+        super.onBindViewHolder(holder, position, payloads);
+    }
+
+    private void bindSelectionState(
+            @NonNull ThumbnailViewHolder holder,
+            boolean isBest,
+            boolean isSelected
+    ) {
+        holder.card.setStrokeColor(holder.itemView.getContext().getColor(
+                isSelected ? R.color.color_scan_gold : android.R.color.transparent
+        ));
+        holder.selectionIcon.setBackgroundResource(
+                isSelected ? R.drawable.bg_scan_results_indicator_selected : R.drawable.bg_scan_results_indicator
+        );
+        holder.selectionIcon.setImageResource(isSelected ? R.drawable.ic_check_small : 0);
+        holder.selectionIcon.setColorFilter(holder.itemView.getContext().getColor(R.color.white));
+        holder.selectionIcon.setAlpha(isBest ? 0.95f : 1f);
+        holder.selectedOverlay.setAlpha(isSelected ? 1f : 0f);
+        holder.imageView.setAlpha(isSelected ? 0.94f : 1f);
     }
 
     @Override

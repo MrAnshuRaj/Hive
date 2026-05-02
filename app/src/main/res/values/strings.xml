@@ -17,6 +17,9 @@
     <string name="quick_cleanup_duplicates">Duplicates</string>
     <string name="quick_cleanup_similar">Similar Photos</string>
     <string name="quick_cleanup_large_videos">Large Videos</string>
+    <string name="quick_cleanup_no_duplicates">No duplicates found</string>
+    <string name="quick_cleanup_no_similar">No similar found</string>
+    <string name="quick_cleanup_no_large_videos">No large videos found</string>
     <string name="smart_insight_compress_title">Compress %1$d videos</string>
     <string name="smart_insight_compress_subtitle">Save %1$s instantly</string>
     <string name="smart_insight_compress_cta">Compress Now</string>
@@ -102,7 +105,7 @@
     <string name="scanning_header_subtitle">Analyzing your photos</string>
     <string name="scanning_center_title">Scanning your photos</string>
     <string name="scanned_files">Scanned Files</string>
-    <string name="issues_found">Issues Found</string>
+    <string name="issues_found">Photos found</string>
     <string name="progress">Progress</string>
     <string name="files_scanned">Files scanned</string>
     <string name="matches_found">Matches found</string>
@@ -322,6 +325,7 @@
     <string name="swipe_duration_value">%1$s</string>
     <string name="swipe_type_photo">Photo</string>
     <string name="swipe_type_video">Video</string>
+    <string name="swipe_best_shot">Best shot</string>
     <string name="swipe_file_size">File Size</string>
     <string name="swipe_today">Today</string>
     <string name="swipe_yesterday">Yesterday</string>

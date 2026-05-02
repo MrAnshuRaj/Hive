@@ -72,7 +72,6 @@ public class ResultGroupAdapter extends RecyclerView.Adapter<ResultGroupAdapter.
         }
         holder.recyclerView.setAdapter(new ThumbnailAdapter(group, (item, willSelect) -> {
             ScanSessionStore.getInstance().setSelected(item.getId(), willSelect);
-            notifyItemChanged(position, "selection");
             if (listener != null) {
                 listener.onSelectionChanged();
             }

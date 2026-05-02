@@ -96,7 +96,7 @@ public class ScanResultsActivity extends BaseEdgeToEdgeActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerGroups);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ResultGroupAdapter(this::refreshUi);
+        adapter = new ResultGroupAdapter(this::refreshSelectionSummary);
         recyclerView.setAdapter(adapter);
 
         int initialTabIndex = getIntent().getIntExtra(EXTRA_INITIAL_TAB_INDEX, 0);
@@ -132,7 +132,13 @@ public class ScanResultsActivity extends BaseEdgeToEdgeActivity {
 
         headerTitleText.setText(resolveHeaderTitle());
         headerSubtitleText.setText(R.string.clean_duplicates_subtitle);
+        refreshSelectionSummary();
+    }
 
+    private void refreshSelectionSummary() {
+        if (scanResult == null) {
+            return;
+        }
         long selectedBytes = ScanSessionStore.getInstance().getSelectedBytes();
         int selectedCount = ScanSessionStore.getInstance().getSelectedCount();
         selectedSpaceText.setText(FormatUtils.formatStorage(selectedBytes));

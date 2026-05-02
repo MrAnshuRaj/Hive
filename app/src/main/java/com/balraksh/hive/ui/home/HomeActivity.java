@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -251,15 +252,45 @@ public class HomeActivity extends BaseEdgeToEdgeActivity implements HomeProfileB
     private void bindQuickCleanup(List<QuickCleanupItem> items) {
         for (QuickCleanupItem item : items) {
             if (item.getType() == QuickCleanupItem.TYPE_DUPLICATES) {
-                duplicateCountText.setText(getString(R.string.home_items_count, item.getCount()));
-                duplicateSpaceText.setText(FormatUtils.formatStorage(item.getEstimatedBytes()));
+                bindQuickCleanupCard(
+                        item,
+                        duplicateCountText,
+                        duplicateSpaceText,
+                        R.string.quick_cleanup_no_duplicates
+                );
             } else if (item.getType() == QuickCleanupItem.TYPE_SIMILAR) {
-                similarCountText.setText(getString(R.string.home_items_count, item.getCount()));
-                similarSpaceText.setText(FormatUtils.formatStorage(item.getEstimatedBytes()));
+                bindQuickCleanupCard(
+                        item,
+                        similarCountText,
+                        similarSpaceText,
+                        R.string.quick_cleanup_no_similar
+                );
             } else if (item.getType() == QuickCleanupItem.TYPE_LARGE_VIDEOS) {
-                largeVideosCountText.setText(getString(R.string.home_items_count, item.getCount()));
-                largeVideosSpaceText.setText(FormatUtils.formatStorage(item.getEstimatedBytes()));
+                bindQuickCleanupCard(
+                        item,
+                        largeVideosCountText,
+                        largeVideosSpaceText,
+                        R.string.quick_cleanup_no_large_videos
+                );
             }
+        }
+    }
+
+    private void bindQuickCleanupCard(
+            QuickCleanupItem item,
+            TextView countText,
+            TextView spaceText,
+            int emptyMessageRes
+    ) {
+        if (item.getCount() > 0) {
+            countText.setText(getString(R.string.home_items_count, item.getCount()));
+            countText.setTextColor(ContextCompat.getColor(this, R.color.color_onboarding_text_secondary));
+            spaceText.setText(FormatUtils.formatStorage(item.getEstimatedBytes()));
+            spaceText.setVisibility(View.VISIBLE);
+        } else {
+            countText.setText(emptyMessageRes);
+            countText.setTextColor(ContextCompat.getColor(this, R.color.color_cleanup_success_green));
+            spaceText.setVisibility(View.GONE);
         }
     }
 

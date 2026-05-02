@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardBackgroundColor="#20150E"
+    app:cardBackgroundColor="#15100D"
     app:cardCornerRadius="@dimen/radius_28"
     app:cardElevation="0dp"
-    app:strokeColor="#33FFFFFF"
+    app:strokeColor="#2EFFFFFF"
     app:strokeWidth="1dp">
 
     <FrameLayout
@@ -23,7 +23,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_onboarding_photo_scrim" />
+            android:background="@drawable/bg_swipe_card_scrim" />
 
         <LinearLayout
             android:id="@+id/layoutBestShotChip"
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_6"
-                android:text="@string/best"
+                android:text="@string/swipe_best_shot"
                 android:textColor="@color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -89,13 +89,13 @@
 
         <ImageButton
             android:id="@+id/buttonPlay"
-            android:layout_width="74dp"
-            android:layout_height="74dp"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
             android:layout_gravity="center"
-            android:background="@drawable/bg_video_play_circle"
-            android:padding="18dp"
+            android:background="@drawable/bg_swipe_play_button"
+            android:padding="20dp"
             android:scaleType="centerInside"
-            android:tint="@color/color_scan_gold"
+            android:tint="@color/white"
             android:visibility="gone" />
 
         <LinearLayout
@@ -123,16 +123,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_margin="@dimen/space_16"
-            app:cardBackgroundColor="#B30B1508"
+            android:layout_marginStart="@dimen/space_28"
+            android:layout_marginEnd="@dimen/space_28"
+            android:layout_marginBottom="@dimen/space_28"
+            app:cardBackgroundColor="@android:color/transparent"
             app:cardCornerRadius="@dimen/radius_24"
             app:cardElevation="0dp"
-            app:strokeColor="#26FFFFFF"
-            app:strokeWidth="1dp">
+            app:strokeWidth="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_swipe_info_panel_figma"
                 android:orientation="vertical"
                 android:padding="@dimen/space_18">
 

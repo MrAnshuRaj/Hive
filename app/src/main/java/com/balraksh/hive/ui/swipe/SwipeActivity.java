@@ -573,7 +573,9 @@ public class SwipeActivity extends BaseEdgeToEdgeActivity {
                         filteredMedia.size()
                 ));
             }
-            buttonUndo.setVisibility(currentIndex > 0 ? View.VISIBLE : View.INVISIBLE);
+            buttonUndo.setVisibility(View.VISIBLE);
+            buttonUndo.setEnabled(currentIndex > 0);
+            buttonUndo.setAlpha(currentIndex > 0 ? 1f : 0.35f);
             buttonFilter.setVisibility(View.VISIBLE);
         }
         viewFilterDot.setVisibility(hasActiveFilters() ? View.VISIBLE : View.GONE);
@@ -602,7 +604,7 @@ public class SwipeActivity extends BaseEdgeToEdgeActivity {
                 ? View.VISIBLE
                 : View.INVISIBLE);
         swipeActionsView.setVisibility(hasMedia && !done ? View.VISIBLE : View.GONE);
-        continueActionButton.setVisibility(hasMedia && !done ? View.VISIBLE : View.GONE);
+        continueActionButton.setVisibility(View.GONE);
         doneActionButton.setVisibility(done ? View.VISIBLE : View.GONE);
 
         if (!hasMedia) {

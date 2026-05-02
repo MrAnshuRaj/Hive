@@ -312,7 +312,7 @@
                                 android:layout_width="22dp"
                                 android:layout_height="22dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/ic_scan_ring"
+                                android:src="@drawable/ic_folder_down"
                                 app:tint="@color/color_onboarding_gold" />
                         </FrameLayout>
 
@@ -396,7 +396,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_scan_ring"
+                        android:src="@drawable/ic_sparkle"
                         app:tint="@color/color_onboarding_orange" />
 
                     <TextView

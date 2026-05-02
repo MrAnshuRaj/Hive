@@ -3,30 +3,41 @@ package com.balraksh.hive.ui.cleanup;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
 import androidx.annotation.Nullable;
 
 import com.balraksh.hive.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class CleanupCelebrationView extends View {
 
-    private static final int PARTICLE_COUNT = 42;
+    private static final long SIDE_BURST_ONE_MS = 300L;
+    private static final long SIDE_BURST_TWO_MS = 600L;
+    private static final long CENTER_BURST_MS = 1100L;
+    private static final long SIDE_DURATION_MS = 2200L;
+    private static final long CENTER_DURATION_MS = 3000L;
+    private static final long TOTAL_DURATION_MS = CENTER_BURST_MS + CENTER_DURATION_MS;
 
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final RectF rect = new RectF();
-    private final Particle[] particles = new Particle[PARTICLE_COUNT];
+    private final List<Particle> particles = new ArrayList<>();
     private final Random random = new Random();
+    private final DecelerateInterpolator alphaInterpolator = new DecelerateInterpolator();
     private int[] palette;
 
     private ValueAnimator animator;
-    private float progress;
+    private float elapsedMs;
+    private boolean particlesReady;
 
     public CleanupCelebrationView(Context context) {
         this(context, null);
@@ -36,10 +47,10 @@ public class CleanupCelebrationView extends View {
         super(context, attrs);
         palette = new int[]{
                 getContext().getColor(R.color.color_cleanup_success_green),
-                getContext().getColor(R.color.color_cleanup_success_accent),
+                Color.rgb(52, 211, 153),
+                Color.rgb(5, 150, 105),
                 getContext().getColor(R.color.white)
         };
-        initParticles();
     }
 
     public void setPalette(int... colors) {
@@ -47,29 +58,38 @@ public class CleanupCelebrationView extends View {
             return;
         }
         palette = colors.clone();
-        for (Particle particle : particles) {
-            particle.color = palette[random.nextInt(palette.length)];
-        }
+        particlesReady = false;
         invalidate();
-    }
-
-    private void initParticles() {
-        for (int index = 0; index < particles.length; index++) {
-            particles[index] = new Particle();
-            resetParticle(particles[index], true);
-        }
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        animator = ValueAnimator.ofFloat(0f, 1f);
-        animator.setDuration(2400L);
-        animator.setRepeatCount(ValueAnimator.INFINITE);
+        post(this::startCelebration);
+    }
+
+    private void startCelebration() {
+        if (!isAttachedToWindow()) {
+            return;
+        }
+        buildParticles();
+        elapsedMs = 0f;
+        if (animator != null) {
+            animator.cancel();
+        }
+        animator = ValueAnimator.ofFloat(0f, TOTAL_DURATION_MS);
+        animator.setDuration(TOTAL_DURATION_MS);
         animator.setInterpolator(new LinearInterpolator());
         animator.addUpdateListener(animation -> {
-            progress = (float) animation.getAnimatedValue();
+            elapsedMs = (float) animation.getAnimatedValue();
             invalidate();
+        });
+        animator.addListener(new android.animation.AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(android.animation.Animator animation) {
+                elapsedMs = TOTAL_DURATION_MS;
+                invalidate();
+            }
         });
         animator.start();
     }
@@ -91,21 +111,27 @@ public class CleanupCelebrationView extends View {
         if (width == 0 || height == 0) {
             return;
         }
+        if (!particlesReady) {
+            buildParticles();
+        }
 
         for (Particle particle : particles) {
-            float traveled = ((progress + particle.offset) % 1f);
-            float x = particle.startX * width + particle.drift * width * traveled;
-            float y = (particle.startY + particle.travelDistance * traveled) * height;
-            if (y > height + particle.size * 2f) {
-                resetParticle(particle, false);
+            float localMs = elapsedMs - particle.startMs;
+            if (localMs < 0f || localMs > particle.durationMs) {
                 continue;
             }
 
+            float seconds = localMs / 1000f;
+            float progress = localMs / particle.durationMs;
+            float easedAlpha = 1f - alphaInterpolator.getInterpolation(Math.max(0f, progress - 0.2f) / 0.8f);
+            float x = particle.originX + (particle.velocityX * seconds);
+            float y = particle.originY + (particle.velocityY * seconds) + (0.5f * particle.gravity * seconds * seconds);
+
             paint.setColor(particle.color);
-            paint.setAlpha((int) (particle.alpha * 255));
+            paint.setAlpha((int) (particle.alpha * easedAlpha * 255));
             canvas.save();
             canvas.translate(x, y);
-            canvas.rotate(particle.rotation + (360f * traveled * particle.spin));
+            canvas.rotate(particle.rotation + (360f * progress * particle.spin));
             if (particle.round) {
                 canvas.drawCircle(0f, 0f, particle.size * 0.5f, paint);
             } else {
@@ -116,19 +142,47 @@ public class CleanupCelebrationView extends View {
         }
     }
 
-    private void resetParticle(Particle particle, boolean initial) {
-        particle.startX = random.nextFloat();
-        particle.startY = initial ? random.nextFloat() * 0.85f : -0.15f - random.nextFloat() * 0.2f;
-        particle.travelDistance = 1.15f + random.nextFloat() * 0.3f;
-        particle.size = dp(2f + random.nextFloat() * 4f);
-        particle.offset = random.nextFloat();
-        particle.drift = -0.08f + random.nextFloat() * 0.16f;
-        particle.rotation = random.nextFloat() * 360f;
-        particle.spin = 0.5f + random.nextFloat() * 1.2f;
-        particle.round = random.nextBoolean();
-        particle.alpha = 0.4f + random.nextFloat() * 0.45f;
+    private void buildParticles() {
+        int width = getWidth();
+        int height = getHeight();
+        if (width == 0 || height == 0) {
+            return;
+        }
+        particles.clear();
+        addBurst(SIDE_BURST_ONE_MS, 0.2f * width, 0.7f * height, 60f, 60f, 88, SIDE_DURATION_MS);
+        addBurst(SIDE_BURST_TWO_MS, 0.8f * width, 0.7f * height, 120f, 60f, 88, SIDE_DURATION_MS);
+        addBurst(CENTER_BURST_MS, 0.5f * width, 0.4f * height, 90f, 120f, 170, CENTER_DURATION_MS);
+        particlesReady = true;
+    }
 
-        particle.color = palette[random.nextInt(palette.length)];
+    private void addBurst(
+            long startMs,
+            float originX,
+            float originY,
+            float angleDegrees,
+            float spreadDegrees,
+            int count,
+            long durationMs
+    ) {
+        for (int index = 0; index < count; index++) {
+            Particle particle = new Particle();
+            float angle = (float) Math.toRadians(angleDegrees - (spreadDegrees * 0.5f) + (random.nextFloat() * spreadDegrees));
+            float velocity = dp(260f + random.nextFloat() * 430f);
+            particle.startMs = startMs + random.nextInt(120);
+            particle.durationMs = durationMs - random.nextInt(420);
+            particle.originX = originX;
+            particle.originY = originY;
+            particle.velocityX = (float) Math.cos(angle) * velocity;
+            particle.velocityY = -(float) Math.sin(angle) * velocity;
+            particle.gravity = dp(560f + random.nextFloat() * 240f);
+            particle.size = dp(2f + random.nextFloat() * 4.5f);
+            particle.color = palette[random.nextInt(palette.length)];
+            particle.alpha = 0.55f + random.nextFloat() * 0.45f;
+            particle.round = random.nextFloat() > 0.62f;
+            particle.rotation = random.nextFloat() * 360f;
+            particle.spin = 0.45f + random.nextFloat() * 1.6f;
+            particles.add(particle);
+        }
     }
 
     private float dp(float value) {
@@ -136,12 +190,14 @@ public class CleanupCelebrationView extends View {
     }
 
     private static final class Particle {
-        float startX;
-        float startY;
-        float travelDistance;
+        long startMs;
+        long durationMs;
+        float originX;
+        float originY;
+        float velocityX;
+        float velocityY;
+        float gravity;
         float size;
-        float offset;
-        float drift;
         float rotation;
         float spin;
         float alpha;
