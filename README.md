@@ -1,6 +1,6 @@
-# SafKaro
+# Hive
 
-SafKaro is a native Android app written in Java with XML layouts. It currently has two main product areas:
+Hive is a native Android app written in Java with XML layouts. It currently has two main product areas:
 
 - Photo cleanup: scan for duplicate and similar images, select what to remove, and delete safely.
 - Video compression: select device videos, configure compression settings, compress to MP4/H.264, and save the results back to device storage.
